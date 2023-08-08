@@ -20,6 +20,9 @@ export default {
         inverted: "var(--color-inverted)",
         "card-fill": "var(--color-card-bg-fill)",
       },
+      borderColor: {
+        muted: "var(--color-text-muted)",
+      },
     },
   },
 };
