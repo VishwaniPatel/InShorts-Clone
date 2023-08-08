@@ -22,6 +22,7 @@ export default {
       },
       borderColor: {
         muted: "var(--color-text-muted)",
+        base: "var(--color-inverted)",
       },
     },
   },
