@@ -2,8 +2,9 @@ import React from 'react'
 import Header from './Header'
 import Routing from '../../routes/Routing'
 import { Outlet } from 'react-router-dom'
+import Sidebar from './Sidebar'
 
-const Main = () => {
+const Master = () => {
     return (
         <>
             <Header />
@@ -12,4 +13,4 @@ const Main = () => {
     )
 }
 
-export default Main
+export default Master
