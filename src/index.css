@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --color-text-base: #101b30;
@@ -12,6 +13,7 @@
     --color-inverted: #101b30;
     --color-card-bg-fill: #f7f9fb;
   }
+
   .dark {
     --color-text-base: #fff;
     --color-text-inverted: #101b30;
@@ -20,7 +22,17 @@
     --color-inverted: #fff;
     --color-card-bg-fill: #293547;
   }
+
   html {
     font-family: "Poppins", sans-serif;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  #root {
+    height: 100%;
   }
 }
