@@ -15,6 +15,10 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
 
     const [categories, setCategories] = useState(dummyCategories);
 
+    /**
+     * to display active category
+     * @param {*} categoryId 
+     */
     const setActiveCategory = (categoryId) => {
         const updatedCategories = categories.map(category => ({
             ...category,
@@ -27,7 +31,9 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
 
 
     return (
-        <div className={` bg-inverted text-primary  shadow absolute transition-all duration-300 ease-in-out top-0  w-64 h-full  ${isSidebarOpen ? 'left-[0]' : 'left-[-270px]'}`} >
+
+        // sidebar started
+        <div className={` bg-inverted text-primary  shadow absolute transition-all duration-300 ease-in-out top-0  w-64 h-full z-10  ${isSidebarOpen ? 'left-[0]' : 'left-[-270px]'}`} >
             {/* Your sidebar content */}
             <div className='flex flex-col h-full justify-between'>
                 <div className="">
@@ -37,6 +43,7 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
                     </div>
                     <h2 className="text-xl font-semibold text-inverted 50 mb-2 p-4   ">News Categories</h2>
                     <div className='border border-muted font-thin  mx-4'></div>
+                    {/* news categories */}
                     <ul className="mt-2">
                         {categories.map((category, index) => (
                             <li key={category.id}
@@ -46,12 +53,14 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
                         ))}
                     </ul>
                 </div>
+                {/* for logout button */}
                 <div className='flex px-4 py-3'>
                     <LogoutIcon className='text-inverted h-6 cursor-pointer' />
                     <span className='ps-3 text-inverted'>Logout</span>
                 </div>
             </div>
         </div>
+        // sidebar end
     );
 };
 

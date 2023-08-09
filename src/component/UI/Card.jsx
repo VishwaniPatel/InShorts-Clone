@@ -30,7 +30,7 @@ const Card = ({ news }) => {
       <div className="w-2/3 p-6 ">
         <div className="flex justify-between">
           {/* Display news title */}
-          <p className="font-bold text-lg mb-2 text-base">
+          <p className="font-bold text-lg mb-2 text-primary">
             {news.news_obj.title}
           </p>
           {/* Save news for later */}
@@ -42,11 +42,11 @@ const Card = ({ news }) => {
           {formattedDate}
         </p>
         {/* Display aggrigated news */}
-        <p className="text-muted text-base text-justify mb-2 text-sm">
+        <p className="text-muted text-primary text-justify mb-2 text-sm">
           {news.news_obj.content}
         </p>
         {/* Link of source */}
-        <p className="text-xs text-base">
+        <p className="text-xs text-primary">
           <a href={news.news_obj.source_url} target="_blank">
             {news.news_obj.source_name}
           </a>
