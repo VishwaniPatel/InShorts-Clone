@@ -11,9 +11,10 @@ export default {
     },
     extend: {
       textColor: {
-        base: "var(--color-text-base)",
+        primary: "var(--color-text-base)",
         inverted: "var(--color-text-inverted)",
         muted: "var(--color-text-muted)",
+
       },
       backgroundColor: {
         base: "var(--color-fill)",
@@ -23,7 +24,9 @@ export default {
       borderColor: {
         muted: "var(--color-text-muted)",
         base: "var(--color-inverted)",
+        primary: "var(--color-fill)"
       },
+
     },
   },
 };
