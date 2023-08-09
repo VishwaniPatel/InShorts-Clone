@@ -23,7 +23,7 @@ const Master = () => {
     }
 
     return (
-        <div className="bg-base">
+        <div className="bg-base h-full  overflow-auto">
             <Header handleSidebarToggle={handleSidebarToggle} />
             {/* send props to sidebar  */}
             <Sidebar isSidebarOpen={isSidebarOpen} onCloseSidebar={handleCloseSidebar} />

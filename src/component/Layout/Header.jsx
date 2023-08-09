@@ -15,7 +15,7 @@ const Header = ({ handleSidebarToggle }) => {
 
     return (
         // header-section started
-        <div className='grid grid-cols-3 p-3 bg-base shadow' >
+        <div className='grid grid-cols-3 p-3 bg-base shadow  sticky top-0' >
             <div className='flex items-center'>
                 <label htmlFor='toggle-sidebar' className=' ' >
                     < MenuIcon className='h-8 px-5 text-primary cursor-pointer' onClick={handleMenu} />
