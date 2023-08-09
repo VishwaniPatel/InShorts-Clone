@@ -2,43 +2,55 @@ import React from "react";
 import ManageLike from "../../feature/ManageLike";
 import SaveForLater from "../../feature/SaveForLater";
 
-const Card = () => {
+const Card = ({ news }) => {
+  const date = new Date(news.news_obj.created_at);
+  const options = {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    weekday: "long",
+  };
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
   return (
-    <div className="mx-auto mb-6 max-w-screen-lg  rounded-xl overflow-hidden shadow-lg flex">
+    <div className=" mx-auto max-w-7xl rounded-xl shadow-lg flex m-6 overflow-hidden bg-card-fill">
       {/*Display News Image */}
-      <img
-        className="w-full h-full object-cover"
-        src="https://static.inshorts.com/inshorts/images/v1/variants/jpg/m/2023/07_jul/21_fri/img_1689930448868_503.jpg?"
-        alt="News image"
-      />
+      <div className="h-[16rem] w-1/3 bg-cover   ">
+        {/* <img className="h-full w-full" src={data.urlToImage}></img> */}
+        <img
+          className="w-full h-full object-cover  overflow-hidden"
+          src={news.news_obj.image_url}
+          alt="No image found"
+        />
+      </div>
+
       {/* Start: News Content */}
-      <div className="p-6 bg-card-fill">
+      <div className="w-2/3 p-6 ">
         <div className="flex justify-between">
           {/* Display news title */}
           <p className="font-bold text-lg mb-2 text-base">
-            {" "}
-            Lorem ipsum dolor sit
+            {news.news_obj.title}
           </p>
           {/* Save news for later */}
           <SaveForLater />
         </div>
         {/* Display news auhtor name and generation time */}
         <p className="text-xs text-muted mb-2">
-          <span className="font-bold">short by</span> Lorem ipsum / 03:22 pm on
-          21 Jul 2023,Friday
+          <span className="font-bold">short by</span> {news.author_name} /{" "}
+          {formattedDate}
         </p>
         {/* Display aggrigated news */}
         <p className="text-muted text-base text-justify mb-2 text-sm">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed ipsam
-          fugit, nulla ut error incidunt itaque odit tempore, quasi quaerat
-          repellendus amet porro officiis ab. Hic delectus sequi illo debitis
-          nesciunt excepturi, obcaecati deserunt! Esse repudiandae hic itaque
-          excepturi expedita quia perspiciatis voluptatem possimus at aperiam
-          sapiente, omnis animi sed atque repellendus facere consectetur,
-          dolorem, quas non ullam adipisci. Distinctio.
+          {news.news_obj.content}
         </p>
         {/* Link of source */}
-        <p className="text-xs text-base">read more at Lorem ipsum</p>
+        <p className="text-xs text-base">
+          <a href={news.news_obj.source_url} target="_blank">
+            {news.news_obj.source_name}
+          </a>
+        </p>
       </div>
       {/* End: News Content */}
     </div>

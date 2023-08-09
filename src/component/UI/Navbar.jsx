@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Button from "./Button";
-import { ChevronDownIcon } from "@heroicons/react/outline";
+import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 const Navbar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -26,7 +25,7 @@ const Navbar = () => {
             }`}
             onClick={() => activeCategory(0)}
           >
-            <a>For You</a>
+            <Link to="/home">For You</Link>
             {activeIndex === 0 && (
               // Bar created to display selected category
               <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
@@ -40,7 +39,7 @@ const Navbar = () => {
             }`}
             onClick={() => activeCategory(1)}
           >
-            <a>Top Stories</a>
+            <Link to="/top-stories">Top Stories</Link>
             {activeIndex === 1 && (
               // Bar created to display selected category
               <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
@@ -54,7 +53,7 @@ const Navbar = () => {
             }`}
             onClick={() => activeCategory(2)}
           >
-            <a>Trending</a>
+            <Link to="/trending">Trending</Link>
             {activeIndex === 2 && (
               // Bar created to display selected category
               <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>

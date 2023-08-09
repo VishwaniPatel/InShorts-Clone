@@ -1,13 +1,13 @@
 import React from "react";
-import Card from "../component/UI/Card";
 import UseNewsData from "../hooks/UseNewsData";
+import Card from "../component/UI/Card";
 
-const Home = () => {
-  // fetch all news data
-  const allNewsData = UseNewsData("all_news");
+const TopStories = () => {
+  // fetch top stories news data
+  const topStories = UseNewsData("top_stories");
   return (
     <div>
-      {allNewsData.map((res) => (
+      {topStories.map((res) => (
         //passing news data to card UI
         <Card news={res} key={res.hash_id} />
       ))}
@@ -15,4 +15,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default TopStories;
