@@ -1,38 +1,43 @@
 import React, { useState } from "react";
 import Header from "./Header";
-import Routing from "../../routes/Routing";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Navbar from "../UI/Navbar";
+import { NewsProvider } from "../../store/ContextProvider";
 
 const Master = () => {
-    const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
-    /**
-     * to open the sidebar
-     */
-    const handleSidebarToggle = () => {
-        setSidebarOpen(true);
-    };
+  /**
+   * to open the sidebar
+   */
+  const handleSidebarToggle = () => {
+    setSidebarOpen(true);
+  };
 
-    /**
-     * to close sidebar
-     */
-    const handleCloseSidebar = () => {
-        setSidebarOpen(false)
-    }
+  /**
+   * to close sidebar
+   */
+  const handleCloseSidebar = () => {
+    setSidebarOpen(false);
+  };
 
-    return (
-        <div className="bg-base h-full  overflow-auto">
-            <Header handleSidebarToggle={handleSidebarToggle} />
-            {/* send props to sidebar  */}
-            <Sidebar isSidebarOpen={isSidebarOpen} onCloseSidebar={handleCloseSidebar} />
-            <div className="container mx-auto ">
-                <Navbar />
-                <Outlet />
-            </div>
+  return (
+    <NewsProvider>
+      <div className="bg-base h-full  overflow-auto">
+        <Header handleSidebarToggle={handleSidebarToggle} />
+        {/* send props to sidebar  */}
+        <Sidebar
+          isSidebarOpen={isSidebarOpen}
+          onCloseSidebar={handleCloseSidebar}
+        />
+        <div className="container mx-auto " onClick={handleCloseSidebar}>
+          <Navbar />
+          <Outlet />
         </div>
-    );
+      </div>
+    </NewsProvider>
+  );
 };
 
 export default Master;
