@@ -1,8 +1,10 @@
 import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import DropDown from "./DropDown";
+import { useAuth0 } from "@auth0/auth0-react";
 const Navbar = () => {
   const location = useLocation();
+  const { isAuthenticated } = useAuth0();
   return (
     <div className="sticky top-16 bg-base p-4">
       <div className="flex justify-end">
@@ -57,17 +59,21 @@ const Navbar = () => {
 
           {/* End: Navbar category */}
           {/* Start: Navbar category */}
-          <NavLink
-            to="/saved-news"
-            className={({ isActive }) => (isActive ? "font-bold" : "")}
-          >
-            <div className="text-primary hover:font-semibold p-4 relative">
-              Saved News
-              {location.pathname === "/saved-news" && (
-                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
-              )}
-            </div>
-          </NavLink>
+          {isAuthenticated ? (
+            <NavLink
+              to="/saved-news"
+              className={({ isActive }) => (isActive ? "font-bold" : "")}
+            >
+              <div className="text-primary hover:font-semibold p-4 relative">
+                Saved News
+                {location.pathname === "/saved-news" && (
+                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
+                )}
+              </div>
+            </NavLink>
+          ) : (
+            ""
+          )}
 
           {/* End: Navbar category */}
         </div>
