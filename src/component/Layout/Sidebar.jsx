@@ -32,9 +32,8 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
   return (
     // sidebar started
     <div
-      className={` bg-inverted text-primary  shadow absolute transition-all duration-300 ease-in-out top-0  w-80 h-full z-10  ${
-        isSidebarOpen ? "left-[0]" : "left-[-370px]"
-      }`}
+      className={` bg-inverted text-primary  shadow absolute transition-all duration-300 ease-in-out top-0  w-80 h-full z-10  ${isSidebarOpen ? "left-[0]" : "left-[-370px]"
+        }`}
     >
       {/* Your sidebar content */}
       <div className="flex flex-col h-full justify-between">
@@ -55,9 +54,8 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
             {categories.map((category, index) => (
               <li
                 key={category.id}
-                className={`cursor-pointer text-inverted px-4 py-3 ${
-                  category.active ? "bg-gray-400" : ""
-                } `}
+                className={`cursor-pointer text-inverted px-4 py-3 ${category.active ? "bg-gray-400" : ""
+                  } `}
                 onClick={() => {
                   setActiveCategory(category.id);
                 }}

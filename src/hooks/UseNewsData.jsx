@@ -10,6 +10,7 @@ const UseNewsData = (category) => {
   // get all news data using service using category parameter
   const getNewsData = async () => {
     await getAllNewsData(category).then((res) => {
+      console.log(res);
       const response = res.data.data.news_list;
       setAllNews(response);
     });
