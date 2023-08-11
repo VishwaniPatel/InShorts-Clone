@@ -1,8 +1,11 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
+import React, { useEffect } from "react";
 
 const UserProfile = () => {
   const { user } = useAuth0();
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     // fetch and display user data
     <div
@@ -13,11 +16,11 @@ const UserProfile = () => {
       data-te-ripple-color="light"
       title={user.name}
     >
-      <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center w-10 h-10">
         <img
           src={user.picture}
           alt="User profile"
-          className="w-12 h-12 rounded-full"
+          className="w-full h-full rounded-full"
         />
         {/* show tooltip on hover of profile with user name */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white p-2 rounded-md opacity-0 invisible transition-opacity duration-300">

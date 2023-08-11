@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import { ChevronLeftIcon, LogoutIcon } from "@heroicons/react/outline";
+import { ChevronLeftIcon } from "@heroicons/react/outline";
 import NewsContext from "../../store/Context";
 import { Link } from "react-router-dom";
+import Logout from "../../feature/Logout";
 const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
   const { setSelectedCategory } = useContext(NewsContext);
   const newsCategories = [
@@ -67,10 +68,7 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
           </ul>
         </div>
         {/* for logout button */}
-        <div className="flex px-4 py-3">
-          <LogoutIcon className="text-inverted h-6 cursor-pointer" />
-          <span className="ps-3 text-inverted">Logout</span>
-        </div>
+        <Logout />
       </div>
     </div>
     // sidebar end
