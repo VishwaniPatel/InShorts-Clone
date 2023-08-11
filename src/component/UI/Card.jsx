@@ -15,24 +15,24 @@ const Card = ({ news }) => {
   };
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
   return (
-    <div className=" mx-auto max-w-7xl rounded-xl shadow-lg flex m-6 overflow-hidden bg-card-fill">
+    <div className=" mx-auto max-w-7xl rounded-xl shadow-lg flex  flex-col md:flex-row m-6 overflow-hidden bg-card-fill ">
       {/*Display News Image */}
-      <div className="h-[16rem] w-1/3 bg-cover   ">
+      <div className="h-52 lg:h-72 md:h-80 bg-cover w-full md:w-1/3">
         {/* <img className="h-full w-full" src={data.urlToImage}></img> */}
         <img
-          className="w-full h-full object-cover  overflow-hidden"
+          className="w-full h-full object-cover overflow-hidden"
           src={news.news_obj.image_url}
           alt="No image found"
         />
       </div>
 
       {/* Start: News Content */}
-      <div className="w-2/3 p-6 ">
+      <div className="w-full md:w-2/3 p-6   relative md:static">
         <div className="flex justify-between">
           {/* Display news title */}
-          <p className="font-bold text-lg mb-2 text-primary">
+          <div className="font-bold text-sm md:text-lg mb-2 text-primary">
             {news.news_obj.title}
-          </p>
+          </div>
           {/* Save news for later */}
           <SaveForLater />
         </div>
@@ -42,7 +42,7 @@ const Card = ({ news }) => {
           {formattedDate}
         </p>
         {/* Display aggrigated news */}
-        <p className="text-muted text-primary text-justify mb-2 text-sm">
+        <p className="text-muted  text-justify mb-2 text-xs md:text-sm lg:text-base">
           {news.news_obj.content}
         </p>
         {/* Link of source */}

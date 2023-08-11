@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import DropDown from "./DropDown";
 const Navbar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
   const activeCategory = (index) => {
     setActiveIndex(index);
   };
@@ -17,61 +16,75 @@ const Navbar = () => {
       {/* Start: Navbar */}
       {/* Navbar is hidden for smaller size screens */}
       <div className="hidden sm:block">
-        <ul className="flex  w-full justify-between border-b-2 border-b-base">
+        <div className="flex  w-full justify-between border-b-2 border-b-base">
           {/*Start: Navbar category */}
-          <li
-            className={`text-primary hover:font-semibold p-4 relative ${activeIndex === 0 ? "font-bold" : ""
-              }`}
+
+          <NavLink
+            to="/home"
+            className={({ isActive }) => (isActive ? "font-bold" : "")}
             onClick={() => activeCategory(0)}
           >
-            <Link to="/home">For You</Link>
-            {activeIndex === 0 && (
-              // Bar created to display selected category
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
-            )}
-          </li>
+            <div className="text-primary hover:font-semibold p-4 relative">
+              For You
+              {activeIndex === 0 && (
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
+              )}
+            </div>
+          </NavLink>
+
           {/* End: Navbar category */}
           {/* Start: Navbar category */}
-          <li
-            className={`text-primary hover:font-semibold p-4 relative ${activeIndex === 1 ? "font-bold" : ""
-              }`}
-            onClick={() => activeCategory(1)}
+          <NavLink
+            to="/top-stories"
+            className={({ isActive }) => (isActive ? "font-bold" : "")}
           >
-            <Link to="/top-stories">Top Stories</Link>
-            {activeIndex === 1 && (
-              // Bar created to display selected category
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
-            )}
-          </li>
+            <div
+              className="text-primary hover:font-semibold p-4 relative "
+              onClick={() => activeCategory(1)}
+            >
+              Top Stories
+              {activeIndex === 1 && (
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
+              )}
+            </div>
+          </NavLink>
+
           {/* End: Navbar category */}
           {/* Start: Navbar category */}
-          <li
-            className={`text-primary hover:font-semibold p-4  relative ${activeIndex === 2 ? "font-bold" : ""
-              }`}
-            onClick={() => activeCategory(2)}
+          <NavLink
+            to="/trending"
+            className={({ isActive }) => (isActive ? "font-bold" : "")}
           >
-            <Link to="/trending">Trending</Link>
-            {activeIndex === 2 && (
-              // Bar created to display selected category
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
-            )}
-          </li>
+            <div
+              className="text-primary hover:font-semibold p-4 relative"
+              onClick={() => activeCategory(2)}
+            >
+              Trending
+              {activeIndex === 2 && (
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
+              )}
+            </div>
+          </NavLink>
+
           {/* End: Navbar category */}
           {/* Start: Navbar category */}
-          <li
-            className={`text-primary hover:font-semibold p-4 relative ${activeIndex === 3 ? "font-bold" : ""
-              }`}
-            onClick={() => activeCategory(3)}
+          <NavLink
+            to="/saved-news"
+            className={({ isActive }) => (isActive ? "font-bold" : "")}
           >
-            <a>Saved News</a>
-            {activeIndex === 3 && (
-              // Bar created to display selected category
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2  w-24 h-2 bg-inverted rounded-lg"></div>
-            )}
-          </li>
+            <div
+              className="text-primary hover:font-semibold p-4 relative"
+              onClick={() => activeCategory(3)}
+            >
+              Saved News
+              {activeIndex === 3 && (
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
+              )}
+            </div>
+          </NavLink>
+
           {/* End: Navbar category */}
-        </ul>
-        <div></div>
+        </div>
       </div>
       {/* End: Navbar */}
     </>
