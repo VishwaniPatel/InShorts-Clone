@@ -14,7 +14,7 @@ const UseSearchData = (NewsData, search) => {
     else {
         const filterData = NewsData.filter((res) => {
             // console.log(res);
-            return JSON.stringify(res.news_obj.title).toUpperCase().includes(search.toUpperCase())
+            return JSON.stringify(res.news_obj.title).toLowerCase().includes(search.toLowerCase())
         }
         )
         return filterData
