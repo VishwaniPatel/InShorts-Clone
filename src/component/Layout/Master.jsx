@@ -31,7 +31,7 @@ const Master = () => {
           isSidebarOpen={isSidebarOpen}
           onCloseSidebar={handleCloseSidebar}
         />
-        <div className="container mx-auto " onClick={handleCloseSidebar}>
+        <div className="container mx-auto p-4" onClick={handleCloseSidebar}>
           <Navbar />
           <Outlet />
         </div>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ChevronLeftIcon, LogoutIcon } from "@heroicons/react/outline";
 import NewsContext from "../../store/Context";
-
+import { Link } from "react-router-dom";
 const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
   const { setSelectedCategory } = useContext(NewsContext);
   const newsCategories = [
@@ -31,17 +31,17 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
   return (
     // sidebar started
     <div
-      className={` bg-inverted text-primary  shadow absolute transition-all duration-300 ease-in-out top-0  w-64 h-full z-10  ${isSidebarOpen ? "left-[0]" : "left-[-270px]"
+      className={` bg-inverted text-primary  shadow absolute transition-all duration-300 ease-in-out top-0  w-80 h-full z-10  ${isSidebarOpen ? "left-[0]" : "left-[-370px]"
         }`}
     >
       {/* Your sidebar content */}
       <div className="flex flex-col h-full justify-between">
-        <div className="">
-          <div className="flex items-center my-3">
-            <ChevronLeftIcon
-              className="text-inverted h-12 cursor-pointer"
-              onClick={onCloseSidebar}
-            />
+        <div>
+          <div
+            className="flex items-center my-3 cursor-pointer p-4"
+            onClick={onCloseSidebar}
+          >
+            <ChevronLeftIcon className="text-inverted h-6 me-2" />
             <span className="text-inverted font-normal">Back to Home</span>
           </div>
           <h2 className="text-xl font-semibold text-inverted 50 mb-2 p-4   ">
@@ -59,7 +59,7 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
                   setActiveCategory(category.id);
                 }}
               >
-                {category.name}
+                <Link to="/home">{category.name}</Link>
               </li>
             ))}
           </ul>
