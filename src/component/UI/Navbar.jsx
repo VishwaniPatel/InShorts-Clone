@@ -1,14 +1,10 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React from "react";
+import { useLocation, NavLink } from "react-router-dom";
 import DropDown from "./DropDown";
 const Navbar = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeCategory = (index) => {
-    setActiveIndex(index);
-  };
-
+  const location = useLocation();
   return (
-    <>
+    <div className="sticky top-16 bg-base p-4">
       <div className="flex justify-end">
         {/* DropDown buttons displays for smaller size screens */}
         <DropDown />
@@ -22,11 +18,10 @@ const Navbar = () => {
           <NavLink
             to="/home"
             className={({ isActive }) => (isActive ? "font-bold" : "")}
-            onClick={() => activeCategory(0)}
           >
             <div className="text-primary hover:font-semibold p-4 relative">
               For You
-              {activeIndex === 0 && (
+              {location.pathname === "/home" && (
                 <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
               )}
             </div>
@@ -38,12 +33,9 @@ const Navbar = () => {
             to="/top-stories"
             className={({ isActive }) => (isActive ? "font-bold" : "")}
           >
-            <div
-              className="text-primary hover:font-semibold p-4 relative "
-              onClick={() => activeCategory(1)}
-            >
+            <div className="text-primary hover:font-semibold p-4 relative ">
               Top Stories
-              {activeIndex === 1 && (
+              {location.pathname === "/top-stories" && (
                 <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
               )}
             </div>
@@ -55,12 +47,9 @@ const Navbar = () => {
             to="/trending"
             className={({ isActive }) => (isActive ? "font-bold" : "")}
           >
-            <div
-              className="text-primary hover:font-semibold p-4 relative"
-              onClick={() => activeCategory(2)}
-            >
+            <div className="text-primary hover:font-semibold p-4 relative">
               Trending
-              {activeIndex === 2 && (
+              {location.pathname === "/trending" && (
                 <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
               )}
             </div>
@@ -72,12 +61,9 @@ const Navbar = () => {
             to="/saved-news"
             className={({ isActive }) => (isActive ? "font-bold" : "")}
           >
-            <div
-              className="text-primary hover:font-semibold p-4 relative"
-              onClick={() => activeCategory(3)}
-            >
+            <div className="text-primary hover:font-semibold p-4 relative">
               Saved News
-              {activeIndex === 3 && (
+              {location.pathname === "/saved-news" && (
                 <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
               )}
             </div>
@@ -87,7 +73,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* End: Navbar */}
-    </>
+    </div>
   );
 };
 

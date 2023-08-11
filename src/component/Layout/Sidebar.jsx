@@ -51,7 +51,7 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
           <div className="border border-muted font-thin  mx-4"></div>
           {/* news categories */}
           <ul className="mt-2">
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <li
                 key={category.id}
                 className={`cursor-pointer text-inverted px-4 py-3 ${
