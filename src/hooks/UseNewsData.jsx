@@ -10,8 +10,18 @@ const UseNewsData = (category) => {
   // get all news data using service using category parameter
   const getNewsData = async () => {
     await getAllNewsData(category).then((res) => {
-      console.log(res);
-      const response = res.data.data.news_list;
+      const response = res.data.data.news_list.map((data) => {
+        return {
+          id: data.hash_id,
+          image_url: data.news_obj.image_url,
+          title: data.news_obj.title,
+          author_name: data.news_obj.author_name,
+          created_at: data.news_obj.created_at,
+          content: data.news_obj.content,
+          source_url: data.news_obj.source_url,
+          source_name: data.news_obj.source_name
+        }
+      });
       setAllNews(response);
     });
   };
