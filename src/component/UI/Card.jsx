@@ -16,7 +16,6 @@ const Card = ({ news }) => {
   };
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
   return (
-
     <div className=" mx-auto max-w-7xl rounded-xl shadow-lg flex  flex-col md:flex-row m-6 overflow-hidden bg-card-fill ">
       {/*Display News Image */}
       <div className="h-52 lg:h-72 md:h-80 bg-cover w-full md:w-1/3">
@@ -57,7 +56,6 @@ const Card = ({ news }) => {
       </div>
       {/* End: News Content */}
     </div>
-
   );
 };
 
