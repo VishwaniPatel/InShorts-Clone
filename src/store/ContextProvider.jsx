@@ -3,7 +3,8 @@ import NewsContext from "./Context";
 
 export const NewsProvider = ({ children }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState("");
+  const [savedNewsItems, setSavedNewsItems] = useState([])
 
   return (
     <NewsContext.Provider
@@ -11,7 +12,9 @@ export const NewsProvider = ({ children }) => {
         selectedCategory,
         setSelectedCategory,
         searchTerm,
-        setSearchTerm
+        setSearchTerm,
+        savedNewsItems,
+        setSavedNewsItems
       }}
     >
       {children}

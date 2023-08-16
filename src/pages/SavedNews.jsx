@@ -3,13 +3,18 @@ import UseBookmarkNewsData from "../hooks/UseBookmarkNewsData";
 import Card from "./../component/UI/Card";
 
 const SavedNews = () => {
-  const NewsData = UseBookmarkNewsData();
+  const newsData = UseBookmarkNewsData();
 
+  const [saveNewsData, setSavedNewsData] = useState([]);
+
+  useEffect(() => {
+    setSavedNewsData(newsData)
+  }, [newsData])
   return (
     <div>
-      {NewsData.map((res) => (
+      {saveNewsData.map((res) => (
         //passing news data to card UI
-        <Card news={res} key={res.id} buttonMode={'delete'} />
+        <Card news={res} id={res.news_id} key={res.id} />
       ))}
     </div>
   );

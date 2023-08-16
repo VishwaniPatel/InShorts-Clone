@@ -2,7 +2,7 @@ import React from "react";
 import ManageLike from "../../feature/ManageLike";
 import SaveForLater from "../../feature/SaveForLater";
 import { useAuth0 } from "@auth0/auth0-react";
-const Card = ({ news, buttonMode }) => {
+const Card = ({ news, buttonMode, id }) => {
   const { isAuthenticated } = useAuth0();
   const date = new Date(news.created_at);
   const options = {
@@ -35,7 +35,7 @@ const Card = ({ news, buttonMode }) => {
             {news.title}
           </div>
           {/* Save news for later */}
-          {isAuthenticated && <SaveForLater news={news} />}
+          {isAuthenticated && <SaveForLater news={news} newsId={id} />}
         </div>
         {/* Display news auhtor name and generation time */}
         <p className="text-xs text-muted mb-2">
