@@ -19,8 +19,9 @@ const UseNewsData = (category) => {
           created_at: data.news_obj.created_at,
           content: data.news_obj.content,
           source_url: data.news_obj.source_url,
-          source_name: data.news_obj.source_name
-        }
+          source_name: data.news_obj.source_name,
+          category_names: data.news_obj.category_names,
+        };
       });
       setAllNews(response);
     });

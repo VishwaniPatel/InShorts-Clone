@@ -1,20 +1,16 @@
 import React from "react";
 import { BookmarkIcon } from "@heroicons/react/outline";
-import { BookmarkIcon as SolidBookmarkIcon } from "@heroicons/react/solid"
+import { BookmarkIcon as SolidBookmarkIcon } from "@heroicons/react/solid";
 import { postUserSavedNewsData } from "../services/SavedNewsDataService";
 const SaveForLater = ({ news }) => {
-
-  const userId = localStorage.getItem("userId")
+  const userId = localStorage.getItem("userId");
 
   /**
-   * 
+   *
    */
   const handleSavedNewsData = () => {
-    postUserSavedNewsData(news, userId)
-  }
-
-
-
+    postUserSavedNewsData(news, userId);
+  };
 
   return (
     <>

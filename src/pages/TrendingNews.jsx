@@ -8,7 +8,7 @@ const TrendingNews = () => {
     <div>
       {trending.map((res) => (
         //passing news data to card UI
-        <Card news={res} key={res.hash_id} />
+        <Card news={res} key={res.id} />
       ))}
     </div>
   );

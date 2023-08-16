@@ -3,12 +3,10 @@ import React, { useEffect } from "react";
 
 const UserProfile = () => {
   const { user } = useAuth0();
-
-  console.log(user.sub.split('|')[1]);
   /**
    * set userId in local storage
    */
-  localStorage.setItem("userId", user.sub.split('|')[1])
+  localStorage.setItem("userId", user.sub.split("|")[1]);
 
   return (
     // fetch and display user data

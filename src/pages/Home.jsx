@@ -11,16 +11,15 @@ const Home = () => {
   const [searchedData, setSearchedData] = useState([]);
 
   useEffect(() => {
-    const searchData = UseSearchData(filteredData, searchTerm)
-    setSearchedData(searchData)
-  }, [filteredData, searchTerm])
-
+    const searchData = UseSearchData(filteredData, searchTerm);
+    setSearchedData(searchData);
+  }, [filteredData, searchTerm]);
 
   return (
     <div>
       {searchedData.map((res) => (
         //passing news data to card UI
-        <Card news={res} key={res.hash_id} />
+        <Card news={res} key={res.id} />
       ))}
     </div>
   );

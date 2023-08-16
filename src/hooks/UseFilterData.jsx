@@ -24,7 +24,7 @@ const UseFilterData = () => {
     } else {
       // filter new data according to selected category
       const categoryData = allNews.filter((response) =>
-        response.news_obj.category_names.includes(selectedCategory)
+        response.category_names.includes(selectedCategory)
       );
       setNewsData(categoryData);
     }

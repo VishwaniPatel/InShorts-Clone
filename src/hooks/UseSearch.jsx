@@ -1,23 +1,19 @@
-
 /**
  * for searchdata
- * @param {*} NewsData 
- * @param {*} search 
- * @returns 
+ * @param {*} NewsData
+ * @param {*} search
+ * @returns
  */
 const UseSearchData = (NewsData, search) => {
-
-    if (!search) {
-        return NewsData
-    }
-
-    else {
-        const filterData = NewsData.filter((res) => {
-            // console.log(res);
-            return JSON.stringify(res.news_obj.title).toLowerCase().includes(search.toLowerCase())
-        }
-        )
-        return filterData
-    }
-}
-export default UseSearchData
+  if (!search) {
+    return NewsData;
+  } else {
+    const filterData = NewsData.filter((res) => {
+      return JSON.stringify(res.news_obj.title)
+        .toLowerCase()
+        .includes(search.toLowerCase());
+    });
+    return filterData;
+  }
+};
+export default UseSearchData;
