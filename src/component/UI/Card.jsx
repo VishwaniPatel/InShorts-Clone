@@ -2,7 +2,7 @@ import React from "react";
 import ManageLike from "../../feature/ManageLike";
 import SaveForLater from "../../feature/SaveForLater";
 import { useAuth0 } from "@auth0/auth0-react";
-const Card = ({ news }) => {
+const Card = ({ news, buttonMode }) => {
   const { isAuthenticated } = useAuth0();
   const date = new Date(news.created_at);
   const options = {

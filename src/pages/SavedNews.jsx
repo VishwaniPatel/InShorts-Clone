@@ -4,11 +4,12 @@ import Card from "./../component/UI/Card";
 
 const SavedNews = () => {
   const NewsData = UseBookmarkNewsData();
+
   return (
     <div>
       {NewsData.map((res) => (
         //passing news data to card UI
-        <Card news={res} key={res.id} />
+        <Card news={res} key={res.id} buttonMode={'delete'} />
       ))}
     </div>
   );
