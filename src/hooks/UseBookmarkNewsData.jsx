@@ -18,7 +18,7 @@ const UseBookmarkNewsData = () => {
       for (const key in response.data.news) {
         const id = key;
         const newsItem = {
-          id: id,
+          id: response.data.news[id].id,
           news_id: response.data.news[id].id,
           title: response.data.news[id].title,
           image_url: response.data.news[id].image_url,
