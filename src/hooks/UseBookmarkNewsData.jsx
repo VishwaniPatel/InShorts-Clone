@@ -29,8 +29,8 @@ const UseBookmarkNewsData = () => {
           source_name: response.data.news[id].source_name,
         };
         responseData.push(newsItem);
-        setSavedNewsData(responseData);
       }
+      setSavedNewsData(responseData);
     });
   };
   return savedNewsData;

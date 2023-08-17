@@ -25,6 +25,5 @@ export const getUserSavedNewsData = async (id) => {
 
 
 export const deleteUserSavedNewsData = async (userId, newsId) => {
-  console.log(`https://inshortclone-default-rtdb.firebaseio.com/users/${userId}/news/${newsId}.json`);
   return await axios.delete(baseUrl + 'users/' + userId + '/news/' + newsId + '.json')
 }

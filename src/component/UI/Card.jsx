@@ -1,8 +1,9 @@
 import React from "react";
-import ManageLike from "../../feature/ManageLike";
 import SaveForLater from "../../feature/SaveForLater";
 import { useAuth0 } from "@auth0/auth0-react";
-const Card = ({ news, buttonMode, id }) => {
+const Card = ({ news, id, onDeleteSavedNews }) => {
+
+
   const { isAuthenticated } = useAuth0();
   const date = new Date(news.created_at);
   const options = {
@@ -14,6 +15,16 @@ const Card = ({ news, buttonMode, id }) => {
     year: "numeric",
     weekday: "long",
   };
+
+  /**
+   * get id from save for later component in OnDeletedata 
+   * @param {*} newsId 
+   */
+  const deleteDataHandler = (newsId) => {
+    onDeleteSavedNews(newsId)
+  }
+
+
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
   return (
     <div className=" mx-auto max-w-7xl rounded-xl shadow-lg flex  flex-col md:flex-row m-6 overflow-hidden bg-card-fill ">
@@ -35,7 +46,7 @@ const Card = ({ news, buttonMode, id }) => {
             {news.title}
           </div>
           {/* Save news for later */}
-          {isAuthenticated && <SaveForLater news={news} newsId={id} />}
+          {isAuthenticated && <SaveForLater news={news} newsId={id} onDeletedata={deleteDataHandler} />}
         </div>
         {/* Display news auhtor name and generation time */}
         <p className="text-xs text-muted mb-2">
