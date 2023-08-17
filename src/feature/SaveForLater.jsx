@@ -17,7 +17,7 @@ const SaveForLater = ({ news }) => {
           ...news,
           isSaved: true,
         });
-        return; // Exit loop after match is found
+        return;
       }
 
       setNewsData({

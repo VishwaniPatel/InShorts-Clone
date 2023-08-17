@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getAllNewsData } from "../services/NewsDataService";
+import NewsContext from "../store/Context";
 
 const UseNewsData = (category) => {
   const [allNews, setAllNews] = useState([]);
+  const { setIsLoading } = useContext(NewsContext);
   useEffect(() => {
+    setIsLoading(true);
     getNewsData();
   }, []);
 
@@ -24,6 +27,7 @@ const UseNewsData = (category) => {
         };
       });
       setAllNews(response);
+      setIsLoading(false); // Set loading to false when fetching is complete
     });
   };
   return allNews;

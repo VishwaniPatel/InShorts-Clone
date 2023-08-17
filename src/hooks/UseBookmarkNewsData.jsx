@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getUserSavedNewsData } from "../services/SavedNewsDataService";
+import NewsContext from "../store/Context";
 
 const UseBookmarkNewsData = () => {
   const [savedNewsData, setSavedNewsData] = useState([]);
-
+  const { setIsLoading } = useContext(NewsContext);
   const userId = localStorage.getItem("userId");
   useEffect(() => {
+    setIsLoading(true);
     savedNews();
   }, []);
 
@@ -29,6 +31,7 @@ const UseBookmarkNewsData = () => {
         };
         responseData.push(newsItem);
         setSavedNewsData(responseData);
+        setIsLoading(false);
       }
     });
   };
