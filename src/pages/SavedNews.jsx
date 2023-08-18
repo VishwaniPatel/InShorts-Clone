@@ -30,7 +30,6 @@ const SavedNews = () => {
     // console.log(deleteNewsId)
     // saveNewsData.splice(deleteNewsId, 1)
     // saveNewsData.splice(0, 1)
-    console.log(saveNewsData)
   }
 
 

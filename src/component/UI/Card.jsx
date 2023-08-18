@@ -1,7 +1,7 @@
 import React from "react";
 import SaveForLater from "../../feature/SaveForLater";
 import { useAuth0 } from "@auth0/auth0-react";
-const Card = ({ news, id, onDeleteSavedNews }) => {
+const Card = ({ news, id, onDeleteSavedNews, saveNewsData }) => {
 
 
   const { isAuthenticated } = useAuth0();
@@ -21,7 +21,7 @@ const Card = ({ news, id, onDeleteSavedNews }) => {
    * @param {*} newsId 
    */
   const deleteDataHandler = (newsId) => {
-    onDeleteSavedNews(newsId)
+    onDeleteSavedNews(newsId);
   }
 
 

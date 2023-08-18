@@ -24,7 +24,6 @@ const SaveForLater = ({ news, newsId, onDeletedata }) => {
    *
    */
   const handleSavedNewsData = () => {
-
     postUserSavedNewsData(news, userId).then(() => {
       setIsSaved(true)
     })
@@ -35,11 +34,7 @@ const SaveForLater = ({ news, newsId, onDeletedata }) => {
    * send id to the Card Component
    */
   const handleDeleteNewsData = () => {
-    // deleteUserSavedNewsData(userId, newsId).then(() => {
-    //   const dataIndex = savedNewsData.findIndex((item) => item.id === newsId)
-    //   savedNewsData.splice(dataIndex, 1)
-    //   
-    // })
+
     setIsSaved(false)
     onDeletedata(newsId)
 
