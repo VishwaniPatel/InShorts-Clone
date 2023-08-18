@@ -4,9 +4,14 @@ import SaveForLater from "../../feature/SaveForLater";
 import { useAuth0 } from "@auth0/auth0-react";
 import NewsContext from "../../store/Context";
 import Skeleton from "./Skeleton";
-const Card = ({ news }) => {
+
+
+const Card = ({ news, id, onDeleteSavedNews }) => {
+
   const { isAuthenticated } = useAuth0();
   const { isLoading } = useContext(NewsContext);
+
+
   const date = new Date(news.created_at);
   const options = {
     hour: "numeric",
@@ -17,6 +22,16 @@ const Card = ({ news }) => {
     year: "numeric",
     weekday: "long",
   };
+
+  /**
+   * get id from save for later component in OnDeletedata 
+   * @param {*} newsId 
+   */
+  const deleteDataHandler = (newsId) => {
+    onDeleteSavedNews(newsId);
+  }
+
+
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
   return (
     <>
@@ -62,10 +77,12 @@ const Card = ({ news }) => {
             </p>
           </div>
           {/* End: News Content */}
+          {/* Save news for later */}
+          {isAuthenticated && <SaveForLater news={news} newsId={id} onDeletedata={deleteDataHandler} />}
         </div>
       )}
     </>
   );
-};
+}
 
-export default Card;
+export default Card

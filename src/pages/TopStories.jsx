@@ -5,6 +5,7 @@ import Card from "../component/UI/Card";
 const TopStories = () => {
   // fetch top stories news data
   const topStories = UseNewsData("top_stories");
+
   return (
     <div>
       {topStories.map((res) => (

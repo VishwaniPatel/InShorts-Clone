@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Navbar from "../UI/Navbar";
 import { NewsProvider } from "../../store/ContextProvider";
+import UseBookmarkNewsData from "../../hooks/UseBookmarkNewsData";
+import NewsContext from "../../store/Context";
+
 
 const Master = () => {
+
+  // const newsData = UseBookmarkNewsData()
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  // const { setSavedNewsItems } = useContext(NewsContext)
+
+  // useEffect(() => {
+  //   setSavedNewsItems(newsData)
+  // }, [newsData])
 
   /**
    * to open the sidebar

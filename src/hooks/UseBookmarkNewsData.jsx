@@ -20,6 +20,7 @@ const UseBookmarkNewsData = () => {
       for (const key in response.data.news) {
         const id = key;
         const newsItem = {
+          news_id: id,
           id: response.data.news[id].id,
           title: response.data.news[id].title,
           image_url: response.data.news[id].image_url,
@@ -30,9 +31,13 @@ const UseBookmarkNewsData = () => {
           source_name: response.data.news[id].source_name,
         };
         responseData.push(newsItem);
+<<<<<<< HEAD
         setSavedNewsData(responseData);
         setIsLoading(false);
+=======
+>>>>>>> feature/bookmark-news
       }
+      setSavedNewsData(responseData);
     });
   };
   return savedNewsData;
