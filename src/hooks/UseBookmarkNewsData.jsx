@@ -13,29 +13,30 @@ const UseBookmarkNewsData = () => {
 
   /**
    * getdata from database
-   */
+  */
   const savedNews = async () => {
-    await getUserSavedNewsData(userId).then((response) => {
-      const responseData = [];
-      for (const key in response.data.news) {
-        const id = key;
-        const newsItem = {
-          news_id: id,
-          id: response.data.news[id].id,
-          title: response.data.news[id].title,
-          image_url: response.data.news[id].image_url,
-          author_name: response.data.news[id].author_name,
-          created_at: response.data.news[id].created_at,
-          content: response.data.news[id].content,
-          source_url: response.data.news[id].source_url,
-          source_name: response.data.news[id].source_name,
-        };
-        responseData.push(newsItem);
-        setSavedNewsData(responseData);
-        setIsLoading(false);
-      }
+    const response = await getUserSavedNewsData(userId)
+    const responseData = [];
+    for (const key in response.data) {
+      const id = key;
+      const newsItem = {
+        news_id: id,
+        id: response.data[id].id,
+        title: response.data[id].title,
+        image_url: response.data[id].image_url,
+        author_name: response.data[id].author_name,
+        created_at: response.data[id].created_at,
+        content: response.data[id].content,
+        source_url: response.data[id].source_url,
+        source_name: response.data[id].source_name,
+        isSaved: response.data[id].isSaved
+      };
+      responseData.push(newsItem);
       setSavedNewsData(responseData);
-    });
+      setIsLoading(false);
+    }
+    setSavedNewsData(responseData);
+    // });
   };
   return savedNewsData;
 };

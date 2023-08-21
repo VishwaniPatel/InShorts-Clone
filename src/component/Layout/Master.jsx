@@ -34,7 +34,6 @@ const Master = () => {
     setLoginToastedDisplay(true)
   }, [isAuthenticated, loginToastedDisplay])
 
-  console.log("render component");
   /**
    * to close sidebar
    */

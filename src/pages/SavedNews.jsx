@@ -3,16 +3,19 @@ import React, { useContext, useEffect, useState } from "react";
 import UseBookmarkNewsData from "../hooks/UseBookmarkNewsData";
 import Card from "./../component/UI/Card";
 import { deleteUserSavedNewsData } from "../services/SavedNewsDataService";
+import NewsContext from "../store/Context";
 
 const SavedNews = () => {
   const newsData = UseBookmarkNewsData();
+  // console.log(newsData);
   const userId = localStorage.getItem("userId");
+  const { setSavedNewsItems, savedNewsItems } = useContext(NewsContext);
 
-  const [saveNewsData, setSavedNewsData] = useState([]);
+
+  // const [saveNewsData, setSavedNewsData] = useState([]);
 
   useEffect(() => {
-    setSavedNewsData(newsData)
-    console.log(saveNewsData);
+    setSavedNewsItems(newsData)
   }, [newsData])
 
 
@@ -23,7 +26,7 @@ const SavedNews = () => {
    */
   const handleDeleteNewsData = (newsId) => {
     deleteUserSavedNewsData(userId, newsId)
-    setSavedNewsData((prev) => {
+    setSavedNewsItems((prev) => {
       return prev.filter((res) => res.news_id !== newsId)
     })
     // console.log('id', newsId, newsData[0].news_id)
@@ -36,7 +39,7 @@ const SavedNews = () => {
 
   return (
     <div>
-      {saveNewsData.map((res) => (
+      {savedNewsItems.map((res) => (
         //passing news data to card UI
         <Card news={res} id={res.news_id} key={res.id} onDeleteSavedNews={handleDeleteNewsData} />
       ))}

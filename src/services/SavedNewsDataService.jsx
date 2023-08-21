@@ -9,9 +9,10 @@ const baseUrl = "https://inshortclone-default-rtdb.firebaseio.com/";
  * @returns
  */
 export const postUserSavedNewsData = async (data, id) => {
+
   return await axios
-    .post(baseUrl + "users/" + id + "/news.json", { ...data })
-    .then((res) => { });
+    .post(baseUrl + "users/" + id + "/news.json", data)
+
 };
 
 /**
@@ -20,7 +21,7 @@ export const postUserSavedNewsData = async (data, id) => {
  * @returns
  */
 export const getUserSavedNewsData = async (id) => {
-  return await axios.get(baseUrl + "users/" + id + ".json");
+  return await axios.get(baseUrl + "users/" + id + "/news.json")
 };
 
 
