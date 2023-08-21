@@ -3,6 +3,7 @@ import { BookmarkIcon } from "@heroicons/react/outline";
 import { BookmarkIcon as SolidBookmarkIcon } from "@heroicons/react/solid";
 import { postUserSavedNewsData } from "../services/SavedNewsDataService";
 import UseBookmarkNewsData from "../hooks/UseBookmarkNewsData";
+import { ToastContainer, toast } from "react-toastify";
 
 
 const SaveForLater = ({ news, newsId, onDeletedata }) => {
@@ -27,16 +28,26 @@ const SaveForLater = ({ news, newsId, onDeletedata }) => {
     postUserSavedNewsData(news, userId).then(() => {
       setIsSaved(true)
     })
-    // setSavedNewsItems((prevBookmarkNews) => [...prevBookmarkNews, news])
+    /**
+     * for showing message when news is saved
+     */
+    toast.success('Saved News Successfully', {
+      position: toast.POSITION.TOP_RIGHT
+    })
   }
 
   /**
    * send id to the Card Component
    */
   const handleDeleteNewsData = () => {
-
     setIsSaved(false)
     onDeletedata(newsId)
+    /**
+     * show message when news is deleted
+     */
+    toast.error('Delete saved news', {
+      position: toast.POSITION.TOP_RIGHT
+    })
 
   }
 
@@ -49,6 +60,7 @@ const SaveForLater = ({ news, newsId, onDeletedata }) => {
         ) : (
           <BookmarkIcon className="block h-4 w-4 " onClick={handleSavedNewsData} />
         )}
+        {/* <ToastContainer /> */}
       </div>
     </>
   );

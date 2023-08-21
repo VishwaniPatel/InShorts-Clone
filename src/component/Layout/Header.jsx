@@ -11,6 +11,8 @@ const Header = ({ handleSidebarToggle }) => {
   const path = useLocation();
 
   const { loginWithPopup, isAuthenticated } = useAuth0();
+
+
   /**
    * for opening the sidebar
    */
@@ -60,11 +62,12 @@ const Header = ({ handleSidebarToggle }) => {
           {isAuthenticated ? (
             <UserProfile />
           ) : (
-            <Button text=" Sign-In" on onClick={loginWithPopup} />
+            <Button text=" Sign-In" onClick={loginWithPopup} />
           )}
         </div>
         <ThemeSwitcher />
       </div>
+
     </div>
     // header-section end
   );

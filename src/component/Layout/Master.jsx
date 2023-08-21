@@ -4,19 +4,16 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Navbar from "../UI/Navbar";
 import { NewsProvider } from "../../store/ContextProvider";
-import UseBookmarkNewsData from "../../hooks/UseBookmarkNewsData";
-import NewsContext from "../../store/Context";
+import { useAuth0 } from "@auth0/auth0-react";
+import { ToastContainer, toast } from "react-toastify";
 
 
 const Master = () => {
 
-  // const newsData = UseBookmarkNewsData()
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  // const { setSavedNewsItems } = useContext(NewsContext)
+  const [loginToastedDisplay, setLoginToastedDisplay] = useState(false)
+  const { isAuthenticated } = useAuth0()
 
-  // useEffect(() => {
-  //   setSavedNewsItems(newsData)
-  // }, [newsData])
 
   /**
    * to open the sidebar
@@ -25,6 +22,19 @@ const Master = () => {
     setSidebarOpen(true);
   };
 
+  /**
+   * to show for successfull login
+   */
+  useEffect(() => {
+    if (isAuthenticated && loginToastedDisplay) {
+      toast.success('Login Successfully', {
+        position: toast.POSITION.TOP_RIGHT
+      })
+    }
+    setLoginToastedDisplay(true)
+  }, [isAuthenticated, loginToastedDisplay])
+
+  console.log("render component");
   /**
    * to close sidebar
    */
@@ -45,6 +55,9 @@ const Master = () => {
           <Navbar />
           <Outlet />
         </div>
+        {isAuthenticated &&
+          <ToastContainer />
+        }
       </div>
     </NewsProvider>
   );
