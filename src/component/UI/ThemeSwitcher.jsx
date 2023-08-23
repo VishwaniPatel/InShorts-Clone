@@ -39,9 +39,9 @@ const ThemeSwitcher = () => {
     <div className={darkMode ? "dark" : ""}>
       <div className=" ">
         {darkMode ? (
-          <SunIcon className="block h-6 w-6 text-primary" onClick={toggleTheme} />
+          <SunIcon className="block h-6 w-6 text-primary cursor-pointer" onClick={toggleTheme} />
         ) : (
-          <MoonIcon className="block h-6 w-6 text-primary" onClick={toggleTheme} />
+          <MoonIcon className="block h-6 w-6 text-primary cursor-pointer" onClick={toggleTheme} />
         )}
       </div>
     </div >
