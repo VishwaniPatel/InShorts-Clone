@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const baseUrl = "https://inshortclone-default-rtdb.firebaseio.com/";
-
 /**
  * for post saved news data
  * @param {*} data
@@ -9,10 +8,7 @@ const baseUrl = "https://inshortclone-default-rtdb.firebaseio.com/";
  * @returns
  */
 export const postUserSavedNewsData = async (data, id) => {
-
-  return await axios
-    .post(baseUrl + "users/" + id + "/news.json", data)
-
+  return await axios.post(baseUrl + "users/" + id + "/news.json", data);
 };
 
 /**
@@ -21,10 +17,11 @@ export const postUserSavedNewsData = async (data, id) => {
  * @returns
  */
 export const getUserSavedNewsData = async (id) => {
-  return await axios.get(baseUrl + "users/" + id + "/news.json")
+  return await axios.get(baseUrl + "users/" + id + "/news.json");
 };
 
-
 export const deleteUserSavedNewsData = async (userId, newsId) => {
-  return await axios.delete(baseUrl + 'users/' + userId + '/news/' + newsId + '.json')
-}
+  return await axios.delete(
+    baseUrl + "users/" + userId + "/news/" + newsId + ".json"
+  );
+};
