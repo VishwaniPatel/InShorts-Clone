@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import Card from "../component/UI/Card";
-import UseFilterData from "../hooks/UseFilterData";
+import UseFilterData from "../customeHooks/UseFilterData";
 import NewsContext from "../store/Context";
-import UseSearchData from "../hooks/UseSearch";
+import UseSearchData from "../customeHooks/UseSearch";
 
 const Home = () => {
   // fetch filtered data according to category
@@ -16,12 +16,12 @@ const Home = () => {
   }, [filteredData, searchTerm]);
 
   return (
-    <div>
+    <>
       {searchedData.map((res) => (
         //passing news data to card UI
         <Card news={res} key={res.id} />
       ))}
-    </div>
+    </>
   );
 };
 
