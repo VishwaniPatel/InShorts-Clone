@@ -9,7 +9,7 @@ const UseSearchData = (NewsData, search) => {
     return NewsData;
   } else {
     const filterData = NewsData.filter((res) => {
-      return JSON.stringify(res.news_obj.title)
+      return JSON.stringify(res.title)
         .toLowerCase()
         .includes(search.toLowerCase());
     });

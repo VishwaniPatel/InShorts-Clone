@@ -5,3 +5,5 @@ export const getAllNewsData = async (category) => {
   const newsData = `${baseUrl}${category}&max_limit=200&include_card_data=true`;
   return await axios.get(`${newsData}`);
 };
+
+

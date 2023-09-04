@@ -37,19 +37,19 @@ const Header = ({ handleSidebarToggle }) => {
             onClick={handleMenu}
           />
         </label>
-        {path.pathname === "/home" && (
-          <div className="border border-muted flex rounded-full px-6 py-2 ms-5">
-            <input
-              placeholder="Search"
-              className="outline-none bg-transparent placeholder:text-primary text-primary"
-              id="search"
-              onKeyUp={(event) => searchDataHandler(event)}
-            />
-            <label htmlFor="search">
-              <SearchIcon className="h-6 text-primary " />
-            </label>
-          </div>
-        )}
+        {/* {path.pathname === "/home" && ( */}
+        <div className="border border-muted flex rounded-full px-6 py-2 ms-5">
+          <input
+            placeholder="Search"
+            className="outline-none bg-transparent placeholder:text-primary text-primary"
+            id="search"
+            onKeyUp={(event) => searchDataHandler(event)}
+          />
+          <label htmlFor="search">
+            <SearchIcon className="h-6 text-primary " />
+          </label>
+        </div>
+        {/* )} */}
       </div>
       <div className="flex items-center justify-center">
         <h1 className="text-primary text-3xl font-normal font-serif ">

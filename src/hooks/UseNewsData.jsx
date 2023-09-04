@@ -27,7 +27,7 @@ const UseNewsData = (category) => {
         };
       });
       setAllNews(response);
-      setIsLoading(false); // Set loading to false when fetching is complete
+      setIsLoading(false);
     });
   };
   return allNews;
