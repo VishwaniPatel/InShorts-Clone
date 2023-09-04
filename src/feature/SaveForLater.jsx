@@ -10,8 +10,6 @@ import NewsContext from "../store/Context";
 
 const SaveForLater = ({ news, newsId, onDeletedata }) => {
   const { savedNewsItems } = useContext(NewsContext);
-  console.log(savedNewsItems);
-  console.log(news);
   // Use local component state to manage icon visibility
   const userId = localStorage.getItem("userId");
   const [isSaved, setIsSaved] = useState(false);

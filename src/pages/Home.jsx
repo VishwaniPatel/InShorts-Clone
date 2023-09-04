@@ -3,11 +3,11 @@ import Card from "../component/UI/Card";
 import UseFilterData from "../customeHooks/UseFilterData";
 import NewsContext from "../store/Context";
 import UseSearchData from "../customeHooks/UseSearch";
-
 const Home = () => {
   // fetch filtered data according to category
-  const { searchTerm } = useContext(NewsContext);
   const filteredData = UseFilterData();
+
+  const { searchTerm } = useContext(NewsContext);
   const [searchedData, setSearchedData] = useState([]);
 
   useEffect(() => {

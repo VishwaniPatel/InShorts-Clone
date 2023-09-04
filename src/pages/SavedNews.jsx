@@ -22,11 +22,6 @@ const SavedNews = () => {
     setSavedNewsItems((prev) => {
       return prev.filter((res) => res.news_id !== newsId);
     });
-    // console.log('id', newsId, newsData[0].news_id)
-    // const deleteNewsId = saveNewsData.filter((res) => res.news_id !== newsId)
-    // console.log(deleteNewsId)
-    // saveNewsData.splice(deleteNewsId, 1)
-    // saveNewsData.splice(0, 1)
   };
 
   return (

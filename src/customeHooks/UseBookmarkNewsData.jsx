@@ -13,9 +13,9 @@ const UseBookmarkNewsData = () => {
 
   /**
    * getdata from database
-  */
+   */
   const savedNews = async () => {
-    const response = await getUserSavedNewsData(userId)
+    const response = await getUserSavedNewsData(userId);
     const responseData = [];
     for (const key in response.data) {
       const id = key;
@@ -29,7 +29,7 @@ const UseBookmarkNewsData = () => {
         content: response.data[id].content,
         source_url: response.data[id].source_url,
         source_name: response.data[id].source_name,
-        isSaved: response.data[id].isSaved
+        isSaved: response.data[id].isSaved,
       };
       responseData.push(newsItem);
       setSavedNewsData(responseData);
