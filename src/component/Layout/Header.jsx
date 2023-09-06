@@ -6,12 +6,12 @@ import ThemeSwitcher from "./../UI/ThemeSwitcher";
 import NewsContext from "../../store/Context";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserProfile from "../UI/UserProfile";
+import SelectLayout from "../UI/SelectLayout";
 const Header = ({ handleSidebarToggle }) => {
   const { setSearchTerm } = useContext(NewsContext);
   const path = useLocation();
 
   const { loginWithPopup, isAuthenticated } = useAuth0();
-
 
   /**
    * for opening the sidebar
@@ -66,8 +66,8 @@ const Header = ({ handleSidebarToggle }) => {
           )}
         </div>
         <ThemeSwitcher />
+        <SelectLayout />
       </div>
-
     </div>
     // header-section end
   );
