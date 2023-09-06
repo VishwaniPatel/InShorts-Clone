@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { BookmarkIcon } from "@heroicons/react/outline";
 import { BookmarkIcon as SolidBookmarkIcon } from "@heroicons/react/solid";
 import {
-  deleteUserSavedNewsData,
   postUserSavedNewsData,
 } from "../services/SavedNewsDataService";
 import { toast } from "react-toastify";
@@ -10,11 +9,11 @@ import NewsContext from "../store/Context";
 
 const SaveForLater = ({ news, newsId, onDeletedata }) => {
   const { savedNewsItems } = useContext(NewsContext);
+  // console.log(savedNewsItems);
   // Use local component state to manage icon visibility
   const userId = localStorage.getItem("userId");
   const [isSaved, setIsSaved] = useState(false);
 
-  // const savedNewsData = UseBookmarkNewsData()
   useEffect(() => {
     const isNewsSaved = savedNewsItems.find((res) => res.id === news.id);
     setIsSaved(isNewsSaved);
@@ -24,6 +23,10 @@ const SaveForLater = ({ news, newsId, onDeletedata }) => {
    *
    */
   const handleSavedNewsData = () => {
+    // news.isSaved = true
+    // console.log(news);
+    // updateAllNewsDataFromDatabase(news, news.id)
+    // setIsSaved(true)
     postUserSavedNewsData(news, userId).then(() => {
       setIsSaved(true);
     });
@@ -40,8 +43,10 @@ const SaveForLater = ({ news, newsId, onDeletedata }) => {
    */
   const handleDeleteNewsData = () => {
     setIsSaved(false);
-    deleteUserSavedNewsData(userId, newsId);
-    savedNewsItems.filter((res) => res.news_id !== newsId);
+    // news.isSaved = false;
+    // updateAllNewsDataFromDatabase(news, news.id)
+    // deleteUserSavedNewsData(userId, newsId);
+    // savedNewsItems.filter((res) => res.news_id !== newsId);
     onDeletedata(newsId);
     /**
      * show message when news is deleted

@@ -8,18 +8,23 @@ const Home = () => {
   const filteredData = UseFilterData();
 
   const { searchTerm } = useContext(NewsContext);
-  const [searchedData, setSearchedData] = useState([]);
+  // const [searchedData, setSearchedData] = useState([]);
 
-  useEffect(() => {
-    const searchData = UseSearchData(filteredData, searchTerm);
-    setSearchedData(searchData);
-  }, [filteredData, searchTerm]);
-
+  // useEffect(() => {
+  //   const searchData = UseSearchData(filteredData, searchTerm);
+  //   setSearchedData(searchData);
+  // }, [filteredData, searchTerm]);
+  // var updateData;
+  const handleSavedData = (data) => {
+    console.log(data);
+    // updateData = data
+    updateAllNewsDataFromDatabase(data, data.id)
+  }
   return (
     <>
-      {searchedData.map((res) => (
+      {filteredData.map((res,index) => (
         //passing news data to card UI
-        <Card news={res} key={res.id} />
+        <Card news={res} id={res.news_id} key={index} onSavedData={handleSavedData} />
       ))}
     </>
   );

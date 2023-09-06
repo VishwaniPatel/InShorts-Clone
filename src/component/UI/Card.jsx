@@ -6,10 +6,9 @@ import NewsContext from "../../store/Context";
 import Skeleton from "./Skeleton";
 
 
-const Card = React.memo(({ news, id, onDeleteSavedNews }) => {
+const Card = React.memo(({ news, id, onDeleteSavedNews , onSavedData }) => {
   const { isAuthenticated } = useAuth0();
   const { isLoading } = useContext(NewsContext);
-  const { setSavedNewsItems } = useContext(NewsContext)
 
 
   const date = new Date(news.created_at);
@@ -29,12 +28,11 @@ const Card = React.memo(({ news, id, onDeleteSavedNews }) => {
    */
   const deleteDataHandler = (newsId) => {
     onDeleteSavedNews(newsId);
-    if (newsId) {
-      setSavedNewsItems((prev) => { return prev.filter((res) => res.news_id !== newsId) })
-    }
-
-
+    // if (newsId) {
+    //   setSavedNewsItems((prev) => { return prev.filter((res) => res.news_id !== newsId) })
+    // }
   }
+  
 
 
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
@@ -62,7 +60,7 @@ const Card = React.memo(({ news, id, onDeleteSavedNews }) => {
                 {news.title}
               </div>
               {/* Save news for later */}
-              {isAuthenticated && <SaveForLater news={news} newsId={id} onDeletedata={deleteDataHandler} />}
+              {isAuthenticated && <SaveForLater news={news} newsId={id} onDeletedata={deleteDataHandler} onSavedData={onSavedData} />}
             </div>
             {/* Display news auhtor name and generation time */}
             <p className="text-xs text-muted mb-2">

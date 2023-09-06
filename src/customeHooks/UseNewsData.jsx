@@ -56,7 +56,7 @@ const UseNewsData = (category) => {
       });
 
       const filteredNews = response.filter((data) => {
-        return data.created_at > previous;
+        // return data.created_at > previous;
       });
 
       if (filteredNews.length > 0) {

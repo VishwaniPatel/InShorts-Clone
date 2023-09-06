@@ -3,6 +3,8 @@ import UseBookmarkNewsData from "../customeHooks/UseBookmarkNewsData";
 import Card from "./../component/UI/Card";
 import { deleteUserSavedNewsData } from "../services/SavedNewsDataService";
 import NewsContext from "../store/Context";
+import UseAllNewsData from "../customeHooks/UseAllNewsData";
+import UseFilterData from "../customeHooks/UseFilterData";
 
 const SavedNews = () => {
   const newsData = UseBookmarkNewsData();
@@ -13,6 +15,10 @@ const SavedNews = () => {
     setSavedNewsItems(savedData);
   }, [newsData]);
 
+  const SavedAllNews = UseFilterData()
+
+  const SavedData = SavedAllNews.filter((res) => res.isSaved = true)
+  // console.log(SavedData);
   /**
    * get the newdId from the card via in  onDeleteSavedNews
    * @param {*} newsId

@@ -31,9 +31,15 @@ export const postLatestNewsData = async (data) => {
 export const getLatestNewsData = async () => {
   return await axios.get(baseUrl + "latestNews.json");
 };
+
+
 export const postAllNewsData = async (data) => {
   return await axios.post(baseUrl + "allNews.json", data);
 };
 export const getAllNewsDataFromDatabase = async () => {
   return await axios.get(baseUrl + "allNews.json");
 };
+
+
+
+
