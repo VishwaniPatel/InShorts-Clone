@@ -25,7 +25,6 @@ const UseFilterData = () => {
     if (selectedCategory == "all_news") {
       setNewsData(newsFromDatabase);
     } else {
-      console.log(newsFromDatabase);
       // filter new data according to selected category
       const categoryData = newsFromDatabase.filter((response) =>
         response.category_names.includes(selectedCategory)

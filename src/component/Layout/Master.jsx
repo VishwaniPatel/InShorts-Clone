@@ -7,13 +7,10 @@ import { NewsProvider } from "../../store/ContextProvider";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer, toast } from "react-toastify";
 
-
 const Master = () => {
-
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [loginToastedDisplay, setLoginToastedDisplay] = useState(false)
-  const { isAuthenticated } = useAuth0()
-
+  const [loginToastedDisplay, setLoginToastedDisplay] = useState(false);
+  const { isAuthenticated } = useAuth0();
 
   /**
    * to open the sidebar
@@ -27,12 +24,12 @@ const Master = () => {
    */
   useEffect(() => {
     if (isAuthenticated && loginToastedDisplay) {
-      toast.success('Login Successfully', {
-        position: toast.POSITION.TOP_RIGHT
-      })
+      toast.success("Login Successfully", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
-    setLoginToastedDisplay(true)
-  }, [isAuthenticated, loginToastedDisplay])
+    setLoginToastedDisplay(true);
+  }, [isAuthenticated, loginToastedDisplay]);
 
   /**
    * to close sidebar
@@ -51,12 +48,10 @@ const Master = () => {
           onCloseSidebar={handleCloseSidebar}
         />
         <div className="container mx-auto p-4" onClick={handleCloseSidebar}>
-          <Navbar />
+          {/* <Navbar /> */}
           <Outlet />
         </div>
-        {isAuthenticated &&
-          <ToastContainer />
-        }
+        {isAuthenticated && <ToastContainer />}
       </div>
     </NewsProvider>
   );
