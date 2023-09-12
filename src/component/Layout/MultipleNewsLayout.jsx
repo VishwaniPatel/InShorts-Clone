@@ -5,8 +5,9 @@ const MultipleNewsLayout = ({ searchedData }) => {
   return (
     <>
       {/* Display news in card */}
-      {searchedData.map((res) => (
-        <Card news={res} key={res.id} />
+      {
+      searchedData.map((res, index) => (  
+        <Card news={res} key={index} />
       ))}
     </>
   );

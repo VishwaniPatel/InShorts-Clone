@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import SaveForLater from "../../feature/SaveForLater";
 import NewsContext from "../../store/Context";
 
-const SinglePageNewsCard = ({ news, id, onDeleteSavedNews }) => {
-  const { setSavedNewsItems } = useContext(NewsContext);
+const SinglePageNewsCard = ({ news }) => {
   // Change the date formate
   const date = new Date(news.created_at);
   const options = {
@@ -16,15 +15,7 @@ const SinglePageNewsCard = ({ news, id, onDeleteSavedNews }) => {
     weekday: "long",
   };
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
-  // Delete saved news data
-  const deleteDataHandler = (newsId) => {
-    onDeleteSavedNews(newsId);
-    if (newsId) {
-      setSavedNewsItems((prev) => {
-        return prev.filter((res) => res.news_id !== newsId);
-      });
-    }
-  };
+  
   return (
     <div className="relative md:static flex flex-col grow mx-auto p-6 rounded-xl shadow-lg m-6 overflow-hidden bg-card-fill ">
       <div className="flex justify-between ">
@@ -36,8 +27,7 @@ const SinglePageNewsCard = ({ news, id, onDeleteSavedNews }) => {
         <div className=" absolute bottom-5 right-5 md:static">
           <SaveForLater
             news={news}
-            newsId={id}
-            onDeletedata={deleteDataHandler}
+            newsId={news.news_id}
           />
         </div>
       </div>
@@ -69,11 +59,10 @@ const SinglePageNewsCard = ({ news, id, onDeleteSavedNews }) => {
         {news.category_names.map((res, index) => (
           <span
             key={res}
-            className={`text-xs font-medium px-3 py-1 me-2 rounded hidden md:inline dark:text-blue-300 ${
-              index % 2 === 0
+            className={`text-xs font-medium px-3 py-1 me-2 rounded hidden md:inline dark:text-blue-300 ${index % 2 === 0
                 ? "bg-blue-100 text-blue-800"
                 : "bg-green-100 text-green-800"
-            }`}
+              }`}
           >
             {res}
           </span>

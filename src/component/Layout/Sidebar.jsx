@@ -3,6 +3,9 @@ import { ChevronLeftIcon } from "@heroicons/react/outline";
 import NewsContext from "../../store/Context";
 import { Link } from "react-router-dom";
 import Logout from "../../feature/Logout";
+import ThemeSwitcher from './../UI/ThemeSwitcher';
+import SelectLayout from './../UI/SelectLayout';
+
 const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
   const { setSelectedCategory } = useContext(NewsContext);
   const newsCategories = [
@@ -32,7 +35,7 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
   return (
     // sidebar started
     <div
-      className={` bg-inverted text-primary  shadow absolute transition-all duration-300 ease-in-out top-0  w-80 h-full z-10  ${isSidebarOpen ? "left-[0]" : "left-[-370px]"
+      className={` bg-inverted text-primary  shadow absolute transition-all duration-300 ease-in-out top-0  w-60 sm:w-80 h-full z-10  ${isSidebarOpen ? "left-[0]" : "left-[-320px]"
         }`}
     >
       {/* Your sidebar content */}
@@ -64,9 +67,22 @@ const Sidebar = ({ isSidebarOpen, onCloseSidebar }) => {
               </li>
             ))}
           </ul>
+          <div className="border border-muted font-thin  mx-4"></div>
+          <ul className="mt-2">
+            <li className="cursor-pointer text-inverted px-4 py-3">
+              <Link to="/saved-news">Saved News</Link>
+            </li>
+          </ul>
         </div>
-        {/* for logout button */}
-        <Logout />
+        {/* for logout , themeSwitcher , selectLayout  button */}
+
+        <div>
+          <div className="block sm:hidden">
+            <div className="px-4 flex py-2 "> <ThemeSwitcher /></div>
+            <div className="px-2 flex py-2 "><SelectLayout /></div>
+          </div>
+          <Logout />
+        </div>
       </div>
     </div>
     // sidebar end

@@ -33,15 +33,15 @@ const ThemeSwitcher = () => {
 
   return (
     // Input button for toggle theme
-    <div className={darkMode ? "dark" : ""}>
+    <div className={`darkMode ? "dark" : ""  flex cursor-pointer`} onClick={toggleTheme}>
       {darkMode ? (
-        <SunIcon className="block h-6 w-6 text-primary" onClick={toggleTheme} />
+        <SunIcon className="block h-6 w-6 sm:text-primary text-inverted" />
       ) : (
         <MoonIcon
-          className="block h-6 w-6 text-primary"
-          onClick={toggleTheme}
+          className="block h-6 w-6 sm:text-primary text-inverted" 
         />
       )}
+      <span className="text-inverted ps-4 block sm:hidden">Theme Switcher</span>
     </div>
   );
 };

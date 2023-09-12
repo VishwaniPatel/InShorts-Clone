@@ -22,8 +22,7 @@ export const getUserSavedNewsData = async (id) => {
 
 export const deleteUserSavedNewsData = async (userId, newsId) => {
   return await axios.delete(
-    baseUrl + "users/" + userId + "/news/" + newsId + ".json"
-  );
+    baseUrl + "users/" + userId + "/news/" + newsId + ".json")
 };
 export const postLatestNewsData = async (data) => {
   return await axios.put(baseUrl + "latestNews.json", data);

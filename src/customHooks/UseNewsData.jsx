@@ -60,7 +60,7 @@ const UseNewsData = (category) => {
       });
 
       if (filteredNews.length > 0) {
-        // postAllNewsData(...filteredNews);
+        postAllNewsData(...filteredNews);
       }
       const latestNews = res.data.data.news_list[0].news_obj.created_at;
       postLatestNewsData({ latestNews: latestNews });

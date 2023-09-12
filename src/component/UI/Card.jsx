@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import NewsContext from "../../store/Context";
 import Skeleton from "./Skeleton";
 
-const Card = React.memo(({ news, id, onDeleteSavedNews }) => {
+const Card = React.memo(({ news }) => {
   const { isAuthenticated } = useAuth0();
   const { isLoading } = useContext(NewsContext);
   const { setSavedNewsItems } = useContext(NewsContext);
@@ -25,14 +25,7 @@ const Card = React.memo(({ news, id, onDeleteSavedNews }) => {
    * get id from save for later component in OnDeletedata
    * @param {*} newsId
    */
-  const deleteDataHandler = (newsId) => {
-    onDeleteSavedNews(newsId);
-    if (newsId) {
-      setSavedNewsItems((prev) => {
-        return prev.filter((res) => res.news_id !== newsId);
-      });
-    }
-  };
+
 
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
   return (
@@ -62,8 +55,8 @@ const Card = React.memo(({ news, id, onDeleteSavedNews }) => {
                 <div className=" absolute -top-5 right-5 md:static">
                   <SaveForLater
                     news={news}
-                    newsId={id}
-                    onDeletedata={deleteDataHandler}
+                    newsId={news.news_id}
+
                   />
                 </div>
               )}

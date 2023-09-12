@@ -1,46 +1,54 @@
 import React, { useContext, useEffect, useState } from "react";
-import UseBookmarkNewsData from "../customeHooks/UseBookmarkNewsData";
-import Card from "./../component/UI/Card";
+import UseBookmarkNewsData from "../customHooks/UseBookmarkNewsData";
 import { deleteUserSavedNewsData } from "../services/SavedNewsDataService";
 import NewsContext from "../store/Context";
-import UseAllNewsData from "../customeHooks/UseAllNewsData";
-import UseFilterData from "../customeHooks/UseFilterData";
+import SinglePageLayout from "../component/Layout/SinglePageLayout";
+import MultipleNewsLayout from "../component/Layout/MultipleNewsLayout";
+import UseSearchData from "../customHooks/UseSearch";
 
 const SavedNews = () => {
   const newsData = UseBookmarkNewsData();
   const userId = localStorage.getItem("userId");
   const { setSavedNewsItems, savedNewsItems } = useContext(NewsContext);
+  const { showAlternateLayout, deletedNewsId, searchTerm } = useContext(NewsContext);
+
+
   useEffect(() => {
-    const savedData = newsData.reverse();
-    setSavedNewsItems(savedData);
-  }, [newsData]);
+    setSavedNewsItems(newsData.reverse())
+  }, [newsData])
 
-  const SavedAllNews = UseFilterData()
-
-  const SavedData = SavedAllNews.filter((res) => res.isSaved = true)
-  // console.log(SavedData);
   /**
-   * get the newdId from the card via in  onDeleteSavedNews
-   * @param {*} newsId
+   * for delete savedNews 
    */
-  const handleDeleteNewsData = (newsId) => {
-    deleteUserSavedNewsData(userId, newsId);
-    setSavedNewsItems((prev) => {
-      return prev.filter((res) => res.news_id !== newsId);
-    });
-  };
+  useEffect(() => {
+    if (deletedNewsId) {
+      console.log(savedNewsItems);
+      deleteUserSavedNewsData(userId, deletedNewsId)
+      const updatedSavedNewsItems = savedNewsItems.filter((res) => res.news_id !== deletedNewsId);
+      setSavedNewsItems(updatedSavedNewsItems);
+    }
+
+  }, [deletedNewsId])
+
+  // Filter data based on the searchTerm
+  const filteredData = searchTerm ? UseSearchData(savedNewsItems, searchTerm) : savedNewsItems;
+
 
   return (
+
     <>
-      {savedNewsItems.map((res) => (
-        //passing news data to card UI
-        <Card
-          news={res}
-          id={res.news_id}
-          key={res.id}
-          onDeleteSavedNews={handleDeleteNewsData}
-        />
-      ))}
+      {/* Switch layout according to user choice */}
+      {filteredData.length === 0 ? (
+        <p className="text-center text-primary">No records found</p>
+      ) : (
+        <>
+          {showAlternateLayout ? (
+            <SinglePageLayout news={filteredData} />
+          ) : (
+            <MultipleNewsLayout searchedData={filteredData} />
+          )}
+        </>
+      )}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import UseNewsData from "../customeHooks/UseNewsData";
+import UseNewsData from "../customHooks/UseNewsData";
 import Card from "../component/UI/Card";
 const TrendingNews = () => {
   // fetch trending news data

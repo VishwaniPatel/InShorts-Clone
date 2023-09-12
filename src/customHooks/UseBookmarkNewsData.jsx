@@ -30,6 +30,7 @@ const UseBookmarkNewsData = () => {
         source_url: response.data[id].source_url,
         source_name: response.data[id].source_name,
         isSaved: response.data[id].isSaved,
+        category_names: response.data[id].category_names,
       };
       responseData.push(newsItem);
       setSavedNewsData(responseData);

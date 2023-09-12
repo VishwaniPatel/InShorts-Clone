@@ -48,11 +48,10 @@ const SinglePageLayout = ({ news }) => {
             <button
               onClick={handlePreviousNews}
               disabled={currentNewsIndex === 0}
-              className={`text-primary p-2 bg-inverted rounded-full ${
-                currentNewsIndex === 0
+              className={`text-primary p-2 bg-inverted rounded-full ${currentNewsIndex === 0
                   ? "disabled:opacity-50 cursor-not-allowed"
                   : ""
-              }`}
+                }`}
             >
               <ChevronUpIcon className="h-6 w-6  text-inverted" />
             </button>

@@ -7,6 +7,7 @@ export const NewsProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [showAlternateLayout, setShowAlternateLayout] = useState(true);
+  const [deletedNewsId, setDeletedNewsId] = useState()
   return (
     <NewsContext.Provider
       value={{
@@ -20,6 +21,8 @@ export const NewsProvider = ({ children }) => {
         setIsLoading,
         showAlternateLayout,
         setShowAlternateLayout,
+        deletedNewsId,
+        setDeletedNewsId
       }}
     >
       {children}
