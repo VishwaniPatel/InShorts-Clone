@@ -1,11 +1,14 @@
 import "./App.css";
 import Main from "./component/Layout/Master";
 import Routing from "./routes/Routing";
+import { NewsProvider } from "./store/ContextProvider";
 
 function App() {
   return (
     <>
-      <Routing />
+      <NewsProvider>
+        <Routing />
+      </NewsProvider>
     </>
   );
 }

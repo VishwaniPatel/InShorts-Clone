@@ -1,21 +1,17 @@
-import { useEffect, useState, useContext } from "react";
-import { getUserSavedNewsData } from "../services/SavedNewsDataService";
+import { useState, useEffect, useContext } from "react";
+import { getAllNewsDataFromDatabase } from "../services/SavedNewsDataService";
 import NewsContext from "../store/Context";
 
-const UseBookmarkNewsData = () => {
-  const [savedNewsData, setSavedNewsData] = useState([]);
+const UseAllNewsData = () => {
+  const [allNews, setAllNews] = useState([]);
   const { setIsLoading } = useContext(NewsContext);
-  const userId = localStorage.getItem("userId");
   useEffect(() => {
     setIsLoading(true);
-    savedNews();
+    getAllNewsFromDatabase();
   }, []);
+  const getAllNewsFromDatabase = async () => {
+    const response = await getAllNewsDataFromDatabase();
 
-  /**
-   * getdata from database
-  */
-  const savedNews = async () => {
-    const response = await getUserSavedNewsData(userId)
     const responseData = [];
     for (const key in response.data) {
       const id = key;
@@ -29,16 +25,16 @@ const UseBookmarkNewsData = () => {
         content: response.data[id].content,
         source_url: response.data[id].source_url,
         source_name: response.data[id].source_name,
-        isSaved: response.data[id].isSaved
+        category_names: response.data[id].category_names,
+        isLike: response.data[id].isLike,
+        isSaved: response.data[id].isSaved,
       };
       responseData.push(newsItem);
-      setSavedNewsData(responseData);
       setIsLoading(false);
     }
-    setSavedNewsData(responseData);
-    // });
+    setAllNews(responseData.reverse());
   };
-  return savedNewsData;
+  return allNews;
 };
 
-export default UseBookmarkNewsData;
+export default UseAllNewsData;

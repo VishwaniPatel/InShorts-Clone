@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className="text-primary hover:font-semibold p-4 relative" >
               For You
               {location.pathname === "/home" && (
-                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-full h-2 bg-inverted rounded-lg"></div>
               )}
             </div>
           </NavLink>
@@ -49,7 +49,7 @@ const Navbar = () => {
             <div className="text-primary hover:font-semibold p-4 relative ">
               Top Stories
               {location.pathname === "/top-stories" && (
-                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-full h-2 bg-inverted rounded-lg"></div>
               )}
             </div>
           </NavLink>
@@ -64,7 +64,7 @@ const Navbar = () => {
             <div className="text-primary hover:font-semibold p-4 relative">
               Trending
               {location.pathname === "/trending" && (
-                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-full h-2 bg-inverted rounded-lg"></div>
               )}
             </div>
           </NavLink>
@@ -80,7 +80,7 @@ const Navbar = () => {
               <div className="text-primary hover:font-semibold p-4 relative">
                 Saved News
                 {location.pathname === "/saved-news" && (
-                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-2 bg-inverted rounded-lg"></div>
+                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-full h-2 bg-inverted rounded-lg"></div>
                 )}
               </div>
             </NavLink>

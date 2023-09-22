@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import UseNewsData from "../hooks/UseNewsData";
+import React from "react";
+import UseNewsData from "../customHooks/UseNewsData";
 import Card from "../component/UI/Card";
 import NewsContext from "../store/Context";
 import UseSearchData from "../hooks/UseSearch";
@@ -10,12 +10,12 @@ const TrendingNews = () => {
   const searchedNewsData = UseSearchData(trending, searchTerm)
 
   return (
-    <div>
-      {searchedNewsData.map((res) => (
+    <>
+      {trending.map((res) => (
         //passing news data to card UI
         <Card news={res} key={res.id} />
       ))}
-    </div>
+    </>
   );
 };
 

@@ -7,7 +7,8 @@
 const UseSearchData = (NewsData, search) => {
   if (!search) {
     return NewsData;
-  } else {
+  }
+  else {
     const filterData = NewsData.filter((res) => {
       return JSON.stringify(res.title)
         .toLowerCase()
