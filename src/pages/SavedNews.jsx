@@ -22,7 +22,6 @@ const SavedNews = () => {
    */
   useEffect(() => {
     if (deletedNewsId) {
-      console.log(savedNewsItems);
       deleteUserSavedNewsData(userId, deletedNewsId)
       const updatedSavedNewsItems = savedNewsItems.filter((res) => res.news_id !== deletedNewsId);
       setSavedNewsItems(updatedSavedNewsItems);

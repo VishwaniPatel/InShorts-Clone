@@ -20,9 +20,9 @@ const SelectLayout = () => {
   useEffect(() => {
     const storedLayout = localStorage.getItem("layout");
     if (storedLayout === "grid") {
-      setShowAlternateLayout(true)
-    } else {
       setShowAlternateLayout(false)
+    } else {
+      setShowAlternateLayout(true)
     }
   }, []);
 

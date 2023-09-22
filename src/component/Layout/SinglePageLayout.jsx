@@ -1,64 +1,86 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+// import 'swiper/css';
+
 import SinglePageNewsCard from "../UI/SinglePageNewsCard";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
-import NewsContext from "../../store/Context";
+
+// Install Swiper modules
+
 const SinglePageLayout = ({ news }) => {
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
+
+  const swiperRef = useRef(null)
   useEffect(() => {
-    setCurrentNewsIndex(0);
-  }, []);
-  useEffect(() => {
-    const handleScroll = (event) => {
-      if (event.deltaY > 0) {
-        // Scrolled down, go to the next news item
-        handleNextNews();
-      } else if (event.deltaY < 0) {
-        // Scrolled up, go to the previous news item
+    if (!currentNewsIndex) {
+      // swiperRef.current
+      setCurrentNewsIndex(1)
+    }
+    const handleKeyPress = (event) => {
+      console.log("event triggered");
+      if (event.key === 'ArrowUp') {
         handlePreviousNews();
+      }
+      else if (event.key === 'ArrowDown') {
+        handleNextNews();
       }
     };
 
-    // Attach the scroll event listener to the document
-    document.addEventListener("wheel", handleScroll);
+    window.addEventListener('keydown', handleKeyPress);
 
     return () => {
-      // Remove the event listener when the component unmounts
-      document.removeEventListener("wheel", handleScroll);
-    };
-  }, [currentNewsIndex]);
+      window.removeEventListener('keydown', handleKeyPress);
+    }
 
-  // Change next news on click of button
+  }, [currentNewsIndex])
+
   const handleNextNews = () => {
-    if (currentNewsIndex < news.length - 1) {
-      setCurrentNewsIndex(currentNewsIndex + 1);
-    }
+    swiperRef.current.swiper.slideNext()
   };
-  // Change previous news on click of button
+
   const handlePreviousNews = () => {
-    if (currentNewsIndex > 0) {
-      setCurrentNewsIndex(currentNewsIndex - 1);
-    }
+    swiperRef.current.swiper.slidePrev()
   };
+
+
   return (
     <>
       {news.length > 0 && (
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full ">
           <div className="flex justify-end">
             {/* Button to change previous news */}
             <button
               onClick={handlePreviousNews}
               disabled={currentNewsIndex === 0}
               className={`text-primary p-2 bg-inverted rounded-full ${currentNewsIndex === 0
-                  ? "disabled:opacity-50 cursor-not-allowed"
-                  : ""
+                ? "disabled:opacity-50 cursor-not-allowed"
+                : ""
                 }`}
             >
-              <ChevronUpIcon className="h-6 w-6  text-inverted" />
+              <ChevronUpIcon className="h-6 w-6 text-inverted" />
             </button>
           </div>
-          {/* News card to display single news */}
-          <SinglePageNewsCard news={news[currentNewsIndex]} key={news.id} />
-          <div className="flex justify-end">
+
+          <Swiper
+            spaceBetween={40}
+            direction="vertical"
+            slidesPerView={1}
+            // activeIndex={currentNewsIndex + 2}
+            initialSlide={currentNewsIndex}
+            // swipeHandler={() => { }}
+            // onSwiper={(swiper) => setCurrentNewsIndex(1)}
+            onSlideChange={() => console.log('slide change')}
+            className="m-0"
+            ref={swiperRef}
+          >
+            {news.map((newsItem, index) => (
+              <SwiperSlide key={index}>
+                <SinglePageNewsCard news={newsItem} key={news.id} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <div className="flex justify-end py-2">
             {/* Button to change next news */}
             <button
               onClick={handleNextNews}

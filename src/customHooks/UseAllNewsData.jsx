@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getAllNewsDataFromDatabase } from "../services/SavedNewsDataService";
+import NewsContext from "../store/Context";
 
 const UseAllNewsData = () => {
   const [allNews, setAllNews] = useState([]);
+  const { setIsLoading } = useContext(NewsContext);
   useEffect(() => {
+    setIsLoading(true);
     getAllNewsFromDatabase();
   }, []);
   const getAllNewsFromDatabase = async () => {
@@ -27,6 +30,7 @@ const UseAllNewsData = () => {
         isSaved: response.data[id].isSaved,
       };
       responseData.push(newsItem);
+      setIsLoading(false);
     }
     setAllNews(responseData.reverse());
   };

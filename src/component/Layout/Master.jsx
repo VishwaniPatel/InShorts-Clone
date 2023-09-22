@@ -6,22 +6,26 @@ import Navbar from "../UI/Navbar";
 import { NewsProvider } from "../../store/ContextProvider";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer, toast } from "react-toastify";
+import NewsContext from "../../store/Context";
 
 const Master = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [loginToastedDisplay, setLoginToastedDisplay] = useState(false);
   const { isAuthenticated } = useAuth0();
+  const { showAlternateLayout } = useContext(NewsContext);
+
+  // console.log(showAlternateLayout);
 
   /**
    * to open the sidebar
-   */
+  */
   const handleSidebarToggle = () => {
     setSidebarOpen(true);
   };
 
   /**
    * to show for successfull login
-   */
+  */
   useEffect(() => {
     if (isAuthenticated && loginToastedDisplay) {
       toast.success("Login Successfully", {
@@ -39,21 +43,21 @@ const Master = () => {
   };
 
   return (
-    <NewsProvider>
-      <div className="bg-base h-full  overflow-auto">
+   
+      <div className="bg-base h-full flex flex-col overflow-auto">
         <Header handleSidebarToggle={handleSidebarToggle} />
         {/* send props to sidebar  */}
         <Sidebar
           isSidebarOpen={isSidebarOpen}
           onCloseSidebar={handleCloseSidebar}
         />
-        <div className="container mx-auto p-4" onClick={handleCloseSidebar}>
+        <div className={`container flex-grow ${showAlternateLayout?'overflow-hidden': ''} mx-auto p-4`} onClick={handleCloseSidebar}>
           {/* <Navbar /> */}
           <Outlet />
         </div>
         {isAuthenticated && <ToastContainer />}
       </div>
-    </NewsProvider>
+   
   );
 };
 

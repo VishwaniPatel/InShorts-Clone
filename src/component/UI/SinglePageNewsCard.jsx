@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
 import SaveForLater from "../../feature/SaveForLater";
 import NewsContext from "../../store/Context";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const SinglePageNewsCard = ({ news }) => {
+
+  const { isAuthenticated } = useAuth0()
   // Change the date formate
   const date = new Date(news.created_at);
+
+
   const options = {
     hour: "numeric",
     minute: "numeric",
@@ -15,24 +20,25 @@ const SinglePageNewsCard = ({ news }) => {
     weekday: "long",
   };
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
-  
+
   return (
-    <div className="relative md:static flex flex-col grow mx-auto p-6 rounded-xl shadow-lg m-6 overflow-hidden bg-card-fill ">
+    <div className="relative md:static flex flex-col  mx-auto p-6  rounded-xl shadow-lg m-3  bg-card-fill ">
       <div className="flex justify-between ">
         {/* Display news title */}
-        <div className="font-bold text-sm md:text-2xl mb-6 text-primary ">
+        <div className="font-bold text-sm md:text-2xl mb-4 text-primary ">
           {news.title}
         </div>
         {/* Save for later functionality component */}
-        <div className=" absolute bottom-5 right-5 md:static">
+        {isAuthenticated && <div className=" absolute bottom-5 right-5 md:static">
           <SaveForLater
             news={news}
             newsId={news.news_id}
           />
-        </div>
+        </div>}
+
       </div>
       {/* Display news author details and generation time  */}
-      <div className="flex mb-8 ">
+      <div className="flex mb-6 ">
         <img
           src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
           alt="Author profile"
@@ -46,7 +52,7 @@ const SinglePageNewsCard = ({ news }) => {
         </div>
       </div>
 
-      <div className="h-52 lg:h-96 md:h-80 bg-cover bg-black w-full  mb-4 rounded-xl flex justify-center">
+      <div className="h-52 lg:h-80 md:h-80 bg-cover bg-black w-full  mb-4 rounded-xl flex justify-center">
         {/*Display News Image */}
         <img
           className="w-full h-full object-contain overflow-hidden"
@@ -60,8 +66,8 @@ const SinglePageNewsCard = ({ news }) => {
           <span
             key={res}
             className={`text-xs font-medium px-3 py-1 me-2 rounded hidden md:inline dark:text-blue-300 ${index % 2 === 0
-                ? "bg-blue-100 text-blue-800"
-                : "bg-green-100 text-green-800"
+              ? "bg-blue-100 text-blue-800"
+              : "bg-green-100 text-green-800"
               }`}
           >
             {res}

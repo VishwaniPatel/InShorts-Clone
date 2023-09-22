@@ -16,7 +16,7 @@ const UseNewsData = (category) => {
     getPreviousNewsData();
     const interval = setInterval(() => {
       getPreviousNewsData();
-    }, 1 * 60 * 1000);
+    }, 1 * 60 * 5000);
     return () => {
       clearInterval(interval); // Clear interval when the component unmounts
     };
@@ -59,9 +59,9 @@ const UseNewsData = (category) => {
         // return data.created_at > previous;
       });
 
-      if (filteredNews.length > 0) {
-        postAllNewsData(...filteredNews);
-      }
+      // if (filteredNews.length > 0) {
+      //   postAllNewsData(...filteredNews);
+      // }
       const latestNews = res.data.data.news_list[0].news_obj.created_at;
       postLatestNewsData({ latestNews: latestNews });
       setAllNews(response);
