@@ -1,21 +1,35 @@
 import React, { useContext, useEffect, useState } from "react";
 import Card from "../component/UI/Card";
-import UseFilterData from "../customHooks/UseFilterData";
+import UseFilterData from "./../hooks/UseFilterData";
 import NewsContext from "../store/Context";
-import UseSearchData from "../customHooks/UseSearch";
+import UseSearchData from "../hooks/UseSearch";
 import SinglePageLayout from "../component/Layout/SinglePageLayout";
 import MultipleNewsLayout from "../component/Layout/MultipleNewsLayout";
 const Home = () => {
   // fetch filtered data according to category
   const filteredData = UseFilterData();
-  const { searchTerm } = useContext(NewsContext);
+  const { searchTerm, searchNewsData , showAlternateLayout} = useContext(NewsContext);
   const [searchedData, setSearchedData] = useState([]);
-  const { showAlternateLayout } = useContext(NewsContext);
 
-  useEffect(() => {
-    const searchData = UseSearchData(filteredData, searchTerm);
-    setSearchedData(searchData);
-  }, [filteredData, searchTerm]);
+   // Use a useEffect to initialize searchedData when filteredData changes
+   useEffect(() => {
+    // Check if filterData is defined and not an empty object
+    if (searchNewsData && Object.keys(searchNewsData).length > 0) {
+      const searchData =  filteredData.filter((res) => res.title === searchNewsData.title);
+      setSearchedData(searchData);
+    } else {
+      // If filterData is not set, use the entire filteredData
+      setSearchedData(filteredData);
+    }
+  }, [filteredData, searchNewsData]);
+
+useEffect(()=>{
+  if(!searchTerm){
+    setSearchedData(filteredData)
+  }
+  
+},[filteredData,searchTerm])
+
 
 
   return (

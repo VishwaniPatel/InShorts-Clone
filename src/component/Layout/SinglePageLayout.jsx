@@ -17,7 +17,6 @@ const SinglePageLayout = ({ news }) => {
       setCurrentNewsIndex(1)
     }
     const handleKeyPress = (event) => {
-      console.log("event triggered");
       if (event.key === 'ArrowUp') {
         handlePreviousNews();
       }
@@ -69,7 +68,6 @@ const SinglePageLayout = ({ news }) => {
             initialSlide={currentNewsIndex}
             // swipeHandler={() => { }}
             // onSwiper={(swiper) => setCurrentNewsIndex(1)}
-            onSlideChange={() => console.log('slide change')}
             className="m-0"
             ref={swiperRef}
           >

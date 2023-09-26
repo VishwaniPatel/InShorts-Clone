@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import UseBookmarkNewsData from "../customHooks/UseBookmarkNewsData";
+import UseBookmarkNewsData from "../hooks/UseBookmarkNewsData";
 import { deleteUserSavedNewsData } from "../services/SavedNewsDataService";
 import NewsContext from "../store/Context";
 import SinglePageLayout from "../component/Layout/SinglePageLayout";
 import MultipleNewsLayout from "../component/Layout/MultipleNewsLayout";
-import UseSearchData from "../customHooks/UseSearch";
+import UseSearchData from "../hooks/UseSearch";
 
 const SavedNews = () => {
   const newsData = UseBookmarkNewsData();
@@ -16,8 +16,8 @@ const SavedNews = () => {
   useEffect(() => {
     setSavedNewsItems(newsData.reverse())
   }, [newsData])
-  const searchedNewsData = UseSearchData(savedNewsItems, searchTerm)
   // console.log(searchedNewsData);
+  
 
 
   /**

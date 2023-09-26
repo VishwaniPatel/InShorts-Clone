@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { MenuIcon, SearchIcon } from "@heroicons/react/outline";
 import Button from "./../UI/Button";
 import { useLocation } from "react-router";
@@ -7,8 +7,11 @@ import NewsContext from "../../store/Context";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserProfile from "../UI/UserProfile";
 import SelectLayout from "../UI/SelectLayout";
+import UseAllNewsData from "../../hooks/UseAllNewsData"
+import SearchBar from "../UI/SearchBar";
 const Header = ({ handleSidebarToggle }) => {
-  const { setSearchTerm } = useContext(NewsContext);
+
+  const path = useLocation()
   const { loginWithPopup, isAuthenticated } = useAuth0();
 
   /**
@@ -18,16 +21,12 @@ const Header = ({ handleSidebarToggle }) => {
     handleSidebarToggle();
   };
 
-  /**
-   * to get the search data from news
-   */
-  const searchDataHandler = (event) => {
-    setSearchTerm(event.target.value);
-  };
+
 
   return (
     // header-section started
-    <div className="grid grid-cols-3 p-3 bg-base shadow  sticky top-0 z-10">
+    <div className="grid grid-cols-3 p-3 bg-base shadow  sticky top-0 z-10  ">
+
       <div className="flex items-center">
         <label htmlFor="toggle-sidebar" className=" ">
           <MenuIcon
@@ -35,30 +34,12 @@ const Header = ({ handleSidebarToggle }) => {
             onClick={(event) => handleMenu(event)}
           />
         </label>
-<<<<<<< HEAD
-        {/* {path.pathname === "/home" && ( */}
-        <div className="border border-muted flex rounded-full px-6 py-2 ms-5">
-          <input
-            placeholder="Search"
-            className="outline-none bg-transparent placeholder:text-primary text-primary"
-=======
-
-        <div className="border border-muted flex rounded-full px-3 py-1 sm:py-2 ms-2 sm:ms-5">
-          <input
-            placeholder="Search"
-            className="outline-none bg-transparent placeholder:text-primary text-primary w-[140px] sm:w-auto"
->>>>>>> 7d995bb2135648370bca6bc749414e9672d7ec6f
-            id="search"
-            onKeyUp={(event) => searchDataHandler(event)}
-          />
-          <label htmlFor="search">
-            <SearchIcon className="h-6 text-primary " />
-          </label>
+        {path.pathname === '/home' && <div className="">
+          <SearchBar />
         </div>
-<<<<<<< HEAD
-        {/* )} */}
-=======
->>>>>>> 7d995bb2135648370bca6bc749414e9672d7ec6f
+        }
+
+
       </div>
       <div className="flex items-center justify-center">
         <h1 className="text-primary text-3xl font-normal font-serif hidden sm:block">
