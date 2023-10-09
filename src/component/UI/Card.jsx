@@ -26,13 +26,10 @@ const Card = React.memo(({ news }) => {
    * @param {*} newsId
    */
 
-
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
   return (
     <>
-      {isLoading || !news ? (
-        <Skeleton />
-      ) : (
+      {news || !isLoading ? (
         <div className=" mx-auto max-w-7xl rounded-xl shadow-lg flex  flex-col md:flex-row m-6 overflow-hidden bg-card-fill ">
           {/*Display News Image */}
           <div className="h-52 lg:h-72 md:h-80 bg-cover w-full md:w-1/3">
@@ -53,11 +50,7 @@ const Card = React.memo(({ news }) => {
               {/* Save news for later */}
               {isAuthenticated && (
                 <div className=" absolute -top-5 right-5 md:static">
-                  <SaveForLater
-                    news={news}
-                    newsId={news.news_id}
-
-                  />
+                  <SaveForLater news={news} newsId={news.news_id} />
                 </div>
               )}
             </div>
@@ -92,6 +85,8 @@ const Card = React.memo(({ news }) => {
           </div>
           {/* End: News Content */}
         </div>
+      ) : (
+        <Skeleton />
       )}
     </>
   );
