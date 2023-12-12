@@ -1,14 +1,7 @@
-import { useState, useEffect, useContext } from "react";
 import { getAllNewsDataFromDatabase } from "../services/SavedNewsDataService";
-import NewsContext from "../store/Context";
+import { useQuery } from "@tanstack/react-query";
 
 const UseAllNewsData = () => {
-  const [allNews, setAllNews] = useState([]);
-  const { setIsLoading } = useContext(NewsContext);
-  useEffect(() => {
-    setIsLoading(true);
-    getAllNewsFromDatabase();
-  }, []);
   const getAllNewsFromDatabase = async () => {
     const response = await getAllNewsDataFromDatabase();
 
@@ -30,11 +23,11 @@ const UseAllNewsData = () => {
         isSaved: response.data[id].isSaved,
       };
       responseData.push(newsItem);
-      setIsLoading(false);
     }
-    setAllNews(responseData.reverse());
+    return responseData.reverse();
   };
-  return allNews;
+  const { data, isLoading } = useQuery(["allNews"], getAllNewsFromDatabase);
+  return { data, isLoading };
 };
 
 export default UseAllNewsData;

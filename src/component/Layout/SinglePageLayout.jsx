@@ -10,37 +10,34 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 const SinglePageLayout = ({ news }) => {
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
 
-  const swiperRef = useRef(null)
+  const swiperRef = useRef(null);
   useEffect(() => {
     if (!currentNewsIndex) {
       // swiperRef.current
-      setCurrentNewsIndex(1)
+      setCurrentNewsIndex(1);
     }
     const handleKeyPress = (event) => {
-      if (event.key === 'ArrowUp') {
+      if (event.key === "ArrowUp") {
         handlePreviousNews();
-      }
-      else if (event.key === 'ArrowDown') {
+      } else if (event.key === "ArrowDown") {
         handleNextNews();
       }
     };
 
-    window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener("keydown", handleKeyPress);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    }
-
-  }, [currentNewsIndex])
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [currentNewsIndex]);
 
   const handleNextNews = () => {
-    swiperRef.current.swiper.slideNext()
+    swiperRef.current.swiper.slideNext();
   };
 
   const handlePreviousNews = () => {
-    swiperRef.current.swiper.slidePrev()
+    swiperRef.current.swiper.slidePrev();
   };
-
 
   return (
     <>
@@ -51,10 +48,11 @@ const SinglePageLayout = ({ news }) => {
             <button
               onClick={handlePreviousNews}
               disabled={currentNewsIndex === 0}
-              className={`text-primary p-2 bg-inverted rounded-full ${currentNewsIndex === 0
-                ? "disabled:opacity-50 cursor-not-allowed"
-                : ""
-                }`}
+              className={`text-primary p-2 bg-inverted rounded-full ${
+                currentNewsIndex === 0
+                  ? "disabled:opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
             >
               <ChevronUpIcon className="h-6 w-6 text-inverted" />
             </button>

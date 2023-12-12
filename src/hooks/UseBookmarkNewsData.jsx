@@ -1,15 +1,15 @@
 import { useEffect, useState, useContext } from "react";
 import { getUserSavedNewsData } from "../services/SavedNewsDataService";
 import NewsContext from "../store/Context";
-
+import { useQuery } from "@tanstack/react-query";
 const UseBookmarkNewsData = () => {
   const [savedNewsData, setSavedNewsData] = useState([]);
-  const { setIsLoading } = useContext(NewsContext);
+  // const { setIsLoading } = useContext(NewsContext);
   const userId = localStorage.getItem("userId");
-  useEffect(() => {
-    setIsLoading(true);
-    savedNews();
-  }, []);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   savedNews();
+  // }, []);
 
   /**
    * getdata from database
@@ -33,13 +33,14 @@ const UseBookmarkNewsData = () => {
         category_names: response.data[id].category_names,
       };
       responseData.push(newsItem);
-      setSavedNewsData(responseData);
-      setIsLoading(false);
+      // setSavedNewsData(responseData);
+      // setIsLoading(false);
     }
-    setSavedNewsData(responseData);
-    // });
+    // setSavedNewsData(responseData);
+    return responseData;
   };
-  return savedNewsData;
+  const { data, isLoading } = useQuery(["bookmarkNews"], savedNews);
+  return { data, isLoading };
 };
 
 export default UseBookmarkNewsData;

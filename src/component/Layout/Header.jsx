@@ -1,17 +1,14 @@
-import React, { useState, useContext, useEffect } from "react";
-import { MenuIcon, SearchIcon } from "@heroicons/react/outline";
+import React from "react";
+import { MenuIcon } from "@heroicons/react/outline";
 import Button from "./../UI/Button";
 import { useLocation } from "react-router";
 import ThemeSwitcher from "./../UI/ThemeSwitcher";
-import NewsContext from "../../store/Context";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserProfile from "../UI/UserProfile";
 import SelectLayout from "../UI/SelectLayout";
-import UseAllNewsData from "../../hooks/UseAllNewsData"
 import SearchBar from "../UI/SearchBar";
 const Header = ({ handleSidebarToggle }) => {
-
-  const path = useLocation()
+  const path = useLocation();
   const { loginWithPopup, isAuthenticated } = useAuth0();
 
   /**
@@ -21,12 +18,9 @@ const Header = ({ handleSidebarToggle }) => {
     handleSidebarToggle();
   };
 
-
-
   return (
     // header-section started
     <div className="grid grid-cols-3 p-3 bg-base shadow  sticky top-0 z-10  ">
-
       <div className="flex items-center">
         <label htmlFor="toggle-sidebar" className=" ">
           <MenuIcon
@@ -34,12 +28,11 @@ const Header = ({ handleSidebarToggle }) => {
             onClick={(event) => handleMenu(event)}
           />
         </label>
-        {path.pathname === '/home' && <div className="">
-          <SearchBar />
-        </div>
-        }
-
-
+        {path.pathname === "/home" && (
+          <div className="">
+            <SearchBar />
+          </div>
+        )}
       </div>
       <div className="flex items-center justify-center">
         <h1 className="text-primary text-3xl font-normal font-serif hidden sm:block">
@@ -55,8 +48,12 @@ const Header = ({ handleSidebarToggle }) => {
             <Button text=" Sign-In" onClick={loginWithPopup} />
           )}
         </div>
-        <div className="hidden sm:block"><ThemeSwitcher /></div>
-        <div className="hidden sm:block"><SelectLayout /></div>
+        <div className="hidden sm:block">
+          <ThemeSwitcher />
+        </div>
+        <div className="hidden sm:block">
+          <SelectLayout />
+        </div>
       </div>
     </div>
     // header-section end

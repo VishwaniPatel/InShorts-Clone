@@ -5,17 +5,21 @@ import NewsContext from "../store/Context";
 import UseSearchData from "../hooks/UseSearch";
 import SinglePageLayout from "../component/Layout/SinglePageLayout";
 import MultipleNewsLayout from "../component/Layout/MultipleNewsLayout";
+import Skeleton from "../component/UI/Skeleton";
 const Home = () => {
   // fetch filtered data according to category
   const filteredData = UseFilterData();
-  const { searchTerm, searchNewsData , showAlternateLayout} = useContext(NewsContext);
+  const { searchTerm, searchNewsData, showAlternateLayout } =
+    useContext(NewsContext);
   const [searchedData, setSearchedData] = useState([]);
 
-   // Use a useEffect to initialize searchedData when filteredData changes
-   useEffect(() => {
+  // Use a useEffect to initialize searchedData when filteredData changes
+  useEffect(() => {
     // Check if filterData is defined and not an empty object
     if (searchNewsData && Object.keys(searchNewsData).length > 0) {
-      const searchData =  filteredData.filter((res) => res.title === searchNewsData.title);
+      const searchData = filteredData.filter(
+        (res) => res.title === searchNewsData.title
+      );
       setSearchedData(searchData);
     } else {
       // If filterData is not set, use the entire filteredData
@@ -23,30 +27,27 @@ const Home = () => {
     }
   }, [filteredData, searchNewsData]);
 
-useEffect(()=>{
-  if(!searchTerm){
-    setSearchedData(filteredData)
-  }
-  
-},[filteredData,searchTerm])
-
-
+  useEffect(() => {
+    if (!searchTerm) {
+      setSearchedData(filteredData);
+    }
+  }, [filteredData, searchTerm]);
 
   return (
+    // <>
+    //   {searchedData.length === 0 ? (
+    //     <Skeleton />
+    //   ) : (
     <>
-      {searchedData.length === 0 ?
-        (<p className="text-center text-primary">No records found</p>) :
-
-        <>
-          {/* Switch layout according to user choice */}
-          {showAlternateLayout
-            ? <SinglePageLayout news={searchedData} />
-            : (
-              <MultipleNewsLayout searchedData={searchedData} />
-            )}
-        </>
-      }
+      {/* Switch layout according to user choice */}
+      {showAlternateLayout ? (
+        <SinglePageLayout news={searchedData} />
+      ) : (
+        <MultipleNewsLayout searchedData={searchedData} />
+      )}
     </>
+    //   )}
+    // </>
   );
 };
 
