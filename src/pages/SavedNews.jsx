@@ -7,37 +7,37 @@ import MultipleNewsLayout from "../component/Layout/MultipleNewsLayout";
 import UseSearchData from "../hooks/UseSearch";
 
 const SavedNews = () => {
-  const newsData = UseBookmarkNewsData();
+  const { data: newsData, isLoading } = UseBookmarkNewsData();
   const userId = localStorage.getItem("userId");
   const { setSavedNewsItems, savedNewsItems } = useContext(NewsContext);
-  const { showAlternateLayout, deletedNewsId, searchTerm } = useContext(NewsContext);
-
+  const { showAlternateLayout, deletedNewsId, searchTerm } =
+    useContext(NewsContext);
 
   useEffect(() => {
-    setSavedNewsItems(newsData.reverse())
-  }, [newsData])
-  // console.log(searchedNewsData);
-  
-
+    if (!isLoading) {
+      setSavedNewsItems(newsData.reverse());
+    }
+  }, [newsData]);
 
   /**
-   * for delete savedNews 
+   * for delete savedNews
    */
   useEffect(() => {
     if (deletedNewsId) {
-      deleteUserSavedNewsData(userId, deletedNewsId)
-      const updatedSavedNewsItems = savedNewsItems.filter((res) => res.news_id !== deletedNewsId);
+      deleteUserSavedNewsData(userId, deletedNewsId);
+      const updatedSavedNewsItems = savedNewsItems.filter(
+        (res) => res.news_id !== deletedNewsId
+      );
       setSavedNewsItems(updatedSavedNewsItems);
     }
-
-  }, [deletedNewsId])
+  }, [deletedNewsId]);
 
   // Filter data based on the searchTerm
-  const filteredData = searchTerm ? UseSearchData(savedNewsItems, searchTerm) : savedNewsItems;
-
+  const filteredData = searchTerm
+    ? UseSearchData(savedNewsItems, searchTerm)
+    : savedNewsItems;
 
   return (
-
     <>
       {/* Switch layout according to user choice */}
       {filteredData.length === 0 ? (

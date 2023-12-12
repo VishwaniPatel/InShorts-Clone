@@ -2,19 +2,23 @@ import { useContext, useState, useEffect } from "react";
 import NewsContext from "../store/Context";
 import UseNewsData from "./UseNewsData";
 import UseAllNewsData from "./UseAllNewsData";
+import Skeleton from "../component/UI/Skeleton";
 
 const UseFilterData = () => {
   const { selectedCategory } = useContext(NewsContext);
-
-  // const allNews = UseNewsData("all_news");
-  const newsFromDatabase = UseAllNewsData();
+  const { data: newsFromDatabase, isLoading } = UseAllNewsData();
   const [newsData, setNewsData] = useState([]);
+
   useEffect(() => {
-    setNewsData(newsFromDatabase);
+    if (!isLoading) {
+      setNewsData(newsFromDatabase);
+    }
   }, [newsFromDatabase]);
 
   useEffect(() => {
-    filteredData();
+    if (!isLoading) {
+      filteredData();
+    }
   }, [selectedCategory]);
 
   /**
